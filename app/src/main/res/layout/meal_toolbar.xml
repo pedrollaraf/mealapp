@@ -14,23 +14,24 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginStart="12dp"
         android:padding="3dp"
-        android:src="@drawable/ic_back"
-        android:background="@drawable/ripple_background_button_toolbar"/>
+        app:srcCompat="@drawable/ic_back"
+        android:background="@drawable/ripple_background_button_toolbar"
+        android:visibility="gone"/>
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/toolbar_end_two_button"
+        android:id="@+id/toolbar_meal_category_button"
         android:layout_width="36dp"
         android:layout_height="36dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/toolbar_end_one_button"
+        app:layout_constraintEnd_toStartOf="@+id/toolbar_meal_country_button"
         android:layout_marginEnd="6dp"
         android:padding="3dp"
-        android:src="@drawable/ic_meal_category"
+        app:srcCompat="@drawable/ic_meal_category"
         android:background="@drawable/ripple_background_button_toolbar"/>
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/toolbar_end_one_button"
+        android:id="@+id/toolbar_meal_country_button"
         android:layout_width="36dp"
         android:layout_height="36dp"
         app:layout_constraintTop_toTopOf="parent"
@@ -38,7 +39,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="12dp"
         android:padding="3dp"
-        android:src="@drawable/ic_meal_location"
+        app:srcCompat="@drawable/ic_meal_country"
+        android:background="@drawable/ripple_background_button_toolbar"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/toolbar_meal_favorite_button"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/toolbar_meal_category_button"
+        android:layout_marginEnd="6dp"
+        android:padding="3dp"
+        app:srcCompat="@drawable/ic_favorite_disabled"
         android:background="@drawable/ripple_background_button_toolbar"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

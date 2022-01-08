@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MealApp">
         <activity
-            android:name="com.pedrollaraf.mealapp.presentation.MainActivity"
+            android:name="com.pedrollaraf.mealapp.presentation.ui.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

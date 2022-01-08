@@ -5,4 +5,10 @@
     <dimen name="toolbar_height">48dp</dimen>
     <!-- endregion -->
 
+    <!-- region card -->
+    <dimen name="cardView_corners">10dp</dimen>
+    <dimen name="cardView_elevation">5dp</dimen>
+    <dimen name="cardView_margin_default">7dp</dimen>
+    <!-- endregion -->
+
 </resources>

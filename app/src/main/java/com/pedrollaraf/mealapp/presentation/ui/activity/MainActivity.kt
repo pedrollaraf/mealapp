@@ -1,4 +1,4 @@
-package com.pedrollaraf.mealapp.presentation
+package com.pedrollaraf.mealapp.presentation.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,17 +14,5 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
-
-        viewBinding.toolbar.toolbarStartButton.setOnClickListener {
-            Toast.makeText(this,"Back Meal",Toast.LENGTH_SHORT).show()
-        }
-
-        viewBinding.toolbar.toolbarEndOneButton.setOnClickListener {
-            Toast.makeText(this,"Location Meal",Toast.LENGTH_SHORT).show()
-        }
-
-        viewBinding.toolbar.toolbarEndTwoButton.setOnClickListener {
-            Toast.makeText(this,"Category Meal",Toast.LENGTH_SHORT).show()
-        }
     }
 }
