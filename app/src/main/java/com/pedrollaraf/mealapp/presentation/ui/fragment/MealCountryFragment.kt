@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.pedrollaraf.mealapp.databinding.FragmentMealCountryBinding
 
-class MealCountryFragment : Fragment(){
+class MealCountryFragment : Fragment() {
 
     private var _binding: FragmentMealCountryBinding? = null
     private val viewBinding get() = _binding!!

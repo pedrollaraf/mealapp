@@ -9,19 +9,7 @@
         android:id="@+id/mealCategoriesFragment"
         android:name="com.pedrollaraf.mealapp.presentation.ui.fragment.MealCategoriesFragment"
         android:label="MealCategoriesFragment"
-        tools:layout="@layout/fragment_meal_categories">
-
-        <action
-            android:id="@+id/action_mealCategoriesFragment_to_mealCountryFragment"
-            app:destination="@id/mealCountryFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            app:popUpToInclusive="true"
-            app:popUpTo="@id/mealCountryFragment"/>
-
-    </fragment>
+        tools:layout="@layout/fragment_meal_categories"/>
 
 
     <fragment
