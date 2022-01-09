@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_FADE
 import androidx.navigation.fragment.NavHostFragment
 import com.pedrollaraf.mealapp.R
-import com.pedrollaraf.mealapp.common.ListenerEvents
+import com.pedrollaraf.mealapp.common.utils.ListenerEvents
 import com.pedrollaraf.mealapp.common.di.DIMealManager
 import com.pedrollaraf.mealapp.databinding.ActivityMainBinding
 

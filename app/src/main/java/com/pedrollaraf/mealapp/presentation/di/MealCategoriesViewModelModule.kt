@@ -4,6 +4,6 @@ import com.pedrollaraf.mealapp.presentation.viewmodels.MealCategoryViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
-fun getMealViewModelModules() = module {
-    viewModel { MealCategoryViewModel() }
+fun getMealCategoriesViewModelModules() = module {
+    viewModel { MealCategoryViewModel(get()) }
 }

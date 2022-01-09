@@ -24,9 +24,11 @@ class DIMealManager {
                         }
                     )
                 )
-                /*loadModules(DataModule().get())
-                loadModules(DomainModule().get())*/
-                loadModules(ViewModelModules().get())
+                loadModules(DIDataModule().getRepositoriesModules())
+                loadModules(DIDataModule().getDataSourceModules())
+                loadModules(DIDataModule().getServicesModules())
+                loadModules(DIDomainModules().getDomainModules())
+                loadModules(DIViewModelModules().getViewModelModules())
             }
         }
     }
