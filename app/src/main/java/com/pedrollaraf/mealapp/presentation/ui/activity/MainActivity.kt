@@ -7,18 +7,26 @@ import androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_FADE
 import androidx.navigation.fragment.NavHostFragment
 import com.pedrollaraf.mealapp.R
 import com.pedrollaraf.mealapp.common.ListenerEvents
+import com.pedrollaraf.mealapp.common.di.DIMealManager
 import com.pedrollaraf.mealapp.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity(), View.OnClickListener,ListenerEvents {
+class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
 
     private lateinit var viewBinding: ActivityMainBinding
     private var auxFg = "MealCategoriesFragment"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initDependencies(savedInstanceState)
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
         initListeners()
+    }
+
+    private fun initDependencies(savedInstanceState: Bundle?) {
+        if (savedInstanceState == null) {
+            DIMealManager().initMealDependenceInjection(application)
+        }
     }
 
     override fun onClick(view: View) {
