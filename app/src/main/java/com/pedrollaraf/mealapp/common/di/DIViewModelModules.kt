@@ -1,11 +1,11 @@
 package com.pedrollaraf.mealapp.common.di
 
-import com.pedrollaraf.mealapp.presentation.di.getMealCategoriesViewModelModules
-import com.pedrollaraf.mealapp.presentation.di.getMealCountriesViewModelModules
+import com.pedrollaraf.mealapp.presentation.di.getMealByCategoryViewModelModules
+import com.pedrollaraf.mealapp.presentation.di.getMealByCountryViewModelModules
 
 class DIViewModelModules {
     fun getViewModelModules() = listOf (
-        getMealCategoriesViewModelModules(),
-        getMealCountriesViewModelModules()
+        getMealByCategoryViewModelModules(),
+        getMealByCountryViewModelModules()
     )
 }

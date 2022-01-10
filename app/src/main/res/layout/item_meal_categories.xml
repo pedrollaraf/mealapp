@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/contentImage"
+            android:id="@+id/content_image"
             android:layout_width="120dp"
             android:layout_height="match_parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -21,7 +21,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/image_item_meal_type"
+                android:id="@+id/image_item_meal_by_category"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -38,10 +38,10 @@
                 android:id="@+id/progress_bar_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="@+id/contentImage"
-                app:layout_constraintBottom_toBottomOf="@+id/contentImage"
-                app:layout_constraintStart_toStartOf="@+id/contentImage"
-                app:layout_constraintEnd_toEndOf="@+id/contentImage"
+                app:layout_constraintTop_toTopOf="@+id/content_image"
+                app:layout_constraintBottom_toBottomOf="@+id/content_image"
+                app:layout_constraintStart_toStartOf="@+id/content_image"
+                app:layout_constraintEnd_toEndOf="@+id/content_image"
                 android:visibility="visible"
                 app:indicatorColor="@color/orange"
                 android:indeterminate="true"
@@ -50,12 +50,12 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/title_item_meal_type"
+            android:id="@+id/title_item_meal_by_country"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/contentImage"
+            app:layout_constraintStart_toEndOf="@+id/content_image"
             android:layout_marginStart="10dp"
             android:text="@string/app_name"
             android:textSize="16sp"

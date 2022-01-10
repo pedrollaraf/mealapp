@@ -14,7 +14,7 @@ import com.pedrollaraf.mealapp.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
 
     private lateinit var viewBinding: ActivityMainBinding
-    private var auxFg = "MealCategoriesFragment"
+    private var auxFg = "MealByCategoryFragment"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,18 +32,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
 
     override fun onClick(view: View) {
         when (view.id) {
-            R.id.toolbar_meal_country_button -> {
-                val checker = checkFragment("MealCountryFragment", auxFg)
+            R.id.toolbar_meal_by_country_button -> {
+                val checker = checkFragment("MealByCountryFragment", auxFg)
                 if (!checker) {
-                    auxFg = "MealCountryFragment"
-                    replaceFragment(R.id.mealCountryFragment)//ID navigation
+                    auxFg = "MealByCountryFragment"
+                    replaceFragment(R.id.mealByCountryFragment)//ID navigation
                 }
             }
-            R.id.toolbar_meal_category_button -> {
-                val checker = checkFragment("MealCategoriesFragment", auxFg)
+            R.id.toolbar_meal_by_category_button -> {
+                val checker = checkFragment("MealByCategoryFragment", auxFg)
                 if (!checker) {
-                    auxFg = "MealCategoriesFragment"
-                    replaceFragment(R.id.mealCategoriesFragment)//ID navigation
+                    auxFg = "MealByCategoryFragment"
+                    replaceFragment(R.id.mealByCategoryFragment)//ID navigation
                 }
             }
         }
@@ -68,8 +68,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
     }
 
     override fun initListeners() {
-        viewBinding.toolbar.toolbarMealCategoryButton.setOnClickListener(this)
-        viewBinding.toolbar.toolbarMealCountryButton.setOnClickListener(this)
+        viewBinding.toolbar.toolbarMealByCategoryButton.setOnClickListener(this)
+        viewBinding.toolbar.toolbarMealByCountryButton.setOnClickListener(this)
     }
 
     fun showHideProgressBar(visibility: Boolean) {

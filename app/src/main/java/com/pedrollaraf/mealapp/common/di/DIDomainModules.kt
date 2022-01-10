@@ -1,12 +1,12 @@
 package com.pedrollaraf.mealapp.common.di
 
-import com.pedrollaraf.mealapp.domain.di.getMealCategoriesDomainModules
-import com.pedrollaraf.mealapp.domain.di.getCountriesDomainModules
+import com.pedrollaraf.mealapp.domain.di.getMealByCategoryDomainModules
+import com.pedrollaraf.mealapp.domain.di.getMealByCountryDomainModules
 
 
 class DIDomainModules {
     fun getDomainModules() = listOf (
-        getMealCategoriesDomainModules(),
-        getCountriesDomainModules()
+        getMealByCategoryDomainModules(),
+        getMealByCountryDomainModules()
     )
 }

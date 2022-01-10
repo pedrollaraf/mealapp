@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_meal"
-    app:startDestination="@id/mealCategoriesFragment">
+    app:startDestination="@id/mealByCategoryFragment">
 
     <fragment
-        android:id="@+id/mealCategoriesFragment"
-        android:name="com.pedrollaraf.mealapp.presentation.ui.fragment.MealCategoriesFragment"
-        android:label="MealCategoriesFragment"
-        tools:layout="@layout/fragment_meal_categories"/>
+        android:id="@+id/mealByCategoryFragment"
+        android:name="com.pedrollaraf.mealapp.presentation.ui.fragment.MealByCategoryFragment"
+        android:label="MealByCategoryFragment"
+        tools:layout="@layout/fragment_meal_by_category"/>
 
 
     <fragment
-        android:id="@+id/mealCountryFragment"
-        android:name="com.pedrollaraf.mealapp.presentation.ui.fragment.MealCountryFragment"
-        android:label="MealCountryFragment"
-        tools:layout="@layout/fragment_meal_country"/>
+        android:id="@+id/mealByCountryFragment"
+        android:name="com.pedrollaraf.mealapp.presentation.ui.fragment.MealByCountryFragment"
+        android:label="MealByCountryFragment"
+        tools:layout="@layout/fragment_meal_by_country"/>
 
 </navigation>
