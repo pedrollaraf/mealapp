@@ -8,6 +8,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.pedrollaraf.mealapp.R
 import com.pedrollaraf.mealapp.common.utils.ListenerEvents
 import com.pedrollaraf.mealapp.common.di.DIMealManager
+import com.pedrollaraf.mealapp.common.utils.Screen
 import com.pedrollaraf.mealapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
@@ -69,5 +70,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
     override fun initListeners() {
         viewBinding.toolbar.toolbarMealCategoryButton.setOnClickListener(this)
         viewBinding.toolbar.toolbarMealCountryButton.setOnClickListener(this)
+    }
+
+    fun showHideProgressBar(visibility: Boolean) {
+        if (visibility) {
+            viewBinding.progressBar.visibility = View.VISIBLE
+            viewBinding.activityContent.alpha = 0.2f
+            Screen.enableDisableView(this,false)
+
+
+        } else {
+            viewBinding.progressBar.visibility = View.GONE
+            viewBinding.activityContent.alpha = 1f
+            Screen.enableDisableView(this,true)
+        }
     }
 }

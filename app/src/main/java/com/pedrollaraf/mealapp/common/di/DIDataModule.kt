@@ -1,7 +1,7 @@
 package com.pedrollaraf.mealapp.common.di
 
 import com.pedrollaraf.mealapp.data.datasource.remote.di.getMealCategoriesDataSourceModules
-import com.pedrollaraf.mealapp.data.datasource.remote.service.di.getMealCategoriesServiceModules
+import com.pedrollaraf.mealapp.data.service.di.getMealCategoriesServiceModules
 import com.pedrollaraf.mealapp.data.di.getMealCategoriesDataModules
 
 

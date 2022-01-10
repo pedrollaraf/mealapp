@@ -1,22 +1,23 @@
 package com.pedrollaraf.mealapp.data.datasource.remote.impl
 
 import com.pedrollaraf.mealapp.data.datasource.remote.abs.MealCategoriesRemoteDataSource
-import com.pedrollaraf.mealapp.data.datasource.remote.service.abs.MealCategoriesApi
-import java.lang.Exception
+import com.pedrollaraf.mealapp.data.datasource.remote.modelresponse.MealCategoryResponse
+import com.pedrollaraf.mealapp.data.service.abs.MealCategoriesApi
 
-class MealCategoriesRemoteDataSourceImpl(private val serviceMealCategories: MealCategoriesApi) : MealCategoriesRemoteDataSource {
-    override suspend fun getMealCategories(){
-        try{
+class MealCategoriesRemoteDataSourceImpl(
+    private val serviceMealCategories: MealCategoriesApi
+) : MealCategoriesRemoteDataSource {
+
+    override suspend fun getMealCategories(): List<MealCategoryResponse> {
+        return try {
             val result = serviceMealCategories.getMealCategories()
-            if(result.isSuccessful){
-                val teste = result.body()
-                val lalala = teste?.categories?.size
-            }else {
-                val teste2 = ""
+            if(result.categories.isNotEmpty()){
+                result.categories
+            }else{
+                listOf()
             }
-
-        }catch (e : Exception){
-            val asdas = e.message
+        } catch (e: Exception) {
+            listOf()
         }
     }
 }

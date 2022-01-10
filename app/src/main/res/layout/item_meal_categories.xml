@@ -5,22 +5,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="@dimen/cardView_margin_default"
     app:cardCornerRadius="@dimen/cardView_corners"
-    app:cardElevation="@dimen/cardView_elevation">
+    app:cardElevation="@dimen/cardView_elevation"
+    app:cardBackgroundColor="@color/darkBrown">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/image_item_meal_type"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/contentImage"
             android:layout_width="120dp"
             android:layout_height="match_parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:background="@color/darkBrown"
-            app:srcCompat="@drawable/ic_favorite_enabled"
-            android:padding="10dp"/>
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_item_meal_type"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_favorite_enabled"
+                android:scaleType="centerCrop"
+                android:background="@color/lightBrown"
+                android:padding="10dp"
+                android:visibility="visible"/>
+
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progress_bar_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@+id/contentImage"
+                app:layout_constraintBottom_toBottomOf="@+id/contentImage"
+                app:layout_constraintStart_toStartOf="@+id/contentImage"
+                app:layout_constraintEnd_toEndOf="@+id/contentImage"
+                android:visibility="gone"
+                app:indicatorColor="@color/orange"
+                android:indeterminate="true"
+                android:layout_centerInParent="true"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title_item_meal_type"
@@ -28,10 +56,11 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/image_item_meal_type"
+            app:layout_constraintStart_toEndOf="@+id/contentImage"
             android:layout_marginStart="10dp"
             android:text="@string/app_name"
             android:textSize="16sp"
+            android:textColor="@color/white"
             android:textStyle="bold"
             />
 
