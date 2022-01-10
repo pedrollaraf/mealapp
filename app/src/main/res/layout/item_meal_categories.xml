@@ -28,7 +28,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/ic_favorite_enabled"
                 android:scaleType="centerCrop"
                 android:background="@color/lightBrown"
                 android:padding="10dp"
@@ -43,7 +42,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/contentImage"
                 app:layout_constraintStart_toStartOf="@+id/contentImage"
                 app:layout_constraintEnd_toEndOf="@+id/contentImage"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:indicatorColor="@color/orange"
                 android:indeterminate="true"
                 android:layout_centerInParent="true"/>

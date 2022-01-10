@@ -23,7 +23,7 @@ class MealCategoriesAdapter(
         return ViewHolder(viewBinding.root)
     }
 
-    override fun onBindViewHolder(holder: MealCategoriesAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val rowItem = listMealCategories[position]
         holder.bindView(rowItem, viewBinding)
     }
@@ -38,7 +38,7 @@ class MealCategoriesAdapter(
             viewBinding: ItemMealCategoriesBinding
         ) {
             viewBinding.titleItemMealType.text = item.strCategory
-            viewBinding.imageItemMealType.load(item.strCategoryThumb) /*{
+            viewBinding.imageItemMealType.load(item.strCategoryThumb){
                 listener(
                     // pass two arguments
                     onSuccess = { _, _ ->
@@ -47,10 +47,11 @@ class MealCategoriesAdapter(
                     },
                     onError = { _, _ ->
                         viewBinding.progressBarImage.visibility = View.GONE
-                        error(R.drawable.ic_error)
+                        viewBinding.imageItemMealType.visibility = View.VISIBLE
+                        viewBinding.imageItemMealType.setImageResource(R.drawable.ic_error)
                     }
                 )
-            }*/
+            }
         }
     }
 }

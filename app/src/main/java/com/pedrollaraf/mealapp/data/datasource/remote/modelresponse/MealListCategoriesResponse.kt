@@ -4,6 +4,6 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class MealListCategories(
+data class MealListCategoriesResponse(
     val categories : List<MealCategoryResponse>
 ):Parcelable
