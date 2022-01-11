@@ -11,44 +11,43 @@ import com.pedrollaraf.mealapp.databinding.ItemMealCategoriesBinding
 import com.pedrollaraf.mealapp.domain.models.MealByCategory
 import com.pedrollaraf.mealapp.presentation.eventclick.EventClickItemMealByCategoryOnList
 
-class MealByCategoryAdapter(
-    private var listMealByCategories: List<MealByCategory>
-) : RecyclerView.Adapter<MealByCategoryAdapter.ViewHolder>() {
+class MealByCategoryAdapter(private var listMealByCategories: List<MealByCategory>) :
+    RecyclerView.Adapter<MealByCategoryAdapter.MealCategoryViewHolder>() {
 
-    private lateinit var viewBinding: ItemMealCategoriesBinding
     var eventClickItemMealByCategoryOnList: EventClickItemMealByCategoryOnList? = null
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ViewHolder {
-        viewBinding = ItemMealCategoriesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(viewBinding.root)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MealCategoryViewHolder {
+        val viewBinding = ItemMealCategoriesBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent, false
+        )
+        return MealCategoryViewHolder(viewBinding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val rowItem = listMealByCategories[position]
-        holder.bindView(rowItem, viewBinding, eventClickItemMealByCategoryOnList)
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun updateList(newList : List<MealByCategory>){
-        listMealByCategories = newList
-        this.notifyDataSetChanged()
+    override fun onBindViewHolder(holder: MealCategoryViewHolder, position: Int) {
+        val item = listMealByCategories[position]
+        holder.bindView(item, eventClickItemMealByCategoryOnList)
     }
 
     override fun getItemCount(): Int {
         return listMealByCategories.size
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateList(newList: List<MealByCategory>) {
+        listMealByCategories = newList
+        this.notifyDataSetChanged()
+    }
+
+    class MealCategoryViewHolder(private val viewBinding: ItemMealCategoriesBinding) :
+        RecyclerView.ViewHolder(viewBinding.root) {
+
         fun bindView(
             item: MealByCategory,
-            viewBinding: ItemMealCategoriesBinding,
             eventClickItemMealByCategoryOnList: EventClickItemMealByCategoryOnList?
         ) {
             viewBinding.titleItemMealByCountry.text = item.strCategory
-            viewBinding.imageItemMealByCategory.load(item.strCategoryThumb){
+            viewBinding.imageItemMealByCategory.load(item.strCategoryThumb) {
                 listener(
                     // pass two arguments
                     onSuccess = { _, _ ->
@@ -68,4 +67,5 @@ class MealByCategoryAdapter(
             }
         }
     }
+
 }

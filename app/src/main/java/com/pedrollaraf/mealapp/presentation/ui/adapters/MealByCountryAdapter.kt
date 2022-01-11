@@ -2,33 +2,30 @@ package com.pedrollaraf.mealapp.presentation.ui.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.pedrollaraf.mealapp.databinding.ItemMealCountryBinding
-import com.pedrollaraf.mealapp.domain.models.MealByCategory
 import com.pedrollaraf.mealapp.domain.models.MealByCountry
 import com.pedrollaraf.mealapp.presentation.eventclick.EventClickItemMealByCountryOnList
 
-class MealByCountryAdapter(
-    private var listMealByCountries: List<MealByCountry>
-) : RecyclerView.Adapter<MealByCountryAdapter.ViewHolder>() {
+class MealByCountryAdapter(private var listMealByCountries: List<MealByCountry>/*, private val context: Context*/) :
+    RecyclerView.Adapter<MealByCountryAdapter.ListItemsViewHolder>() {
 
-    private lateinit var viewBinding: ItemMealCountryBinding
     var eventClickItemMealByCountryOnList: EventClickItemMealByCountryOnList? = null
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ViewHolder {
-        viewBinding =
-            ItemMealCountryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(viewBinding.root)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListItemsViewHolder {
+        val itemBinding =
+            ItemMealCountryBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        return ListItemsViewHolder(itemBinding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val rowItem = listMealByCountries[position]
-        holder.bindView(rowItem, viewBinding, eventClickItemMealByCountryOnList)
+    override fun onBindViewHolder(holder: ListItemsViewHolder, position: Int) {
+        val item = listMealByCountries[position]
+        holder.bindView(item, eventClickItemMealByCountryOnList)
     }
 
     override fun getItemCount(): Int {
@@ -36,15 +33,15 @@ class MealByCountryAdapter(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateList(newList : List<MealByCountry>){
+    fun updateList(newList: List<MealByCountry>) {
         listMealByCountries = newList
         this.notifyDataSetChanged()
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ListItemsViewHolder(private val viewBinding: ItemMealCountryBinding) :
+        RecyclerView.ViewHolder(viewBinding.root) {
         fun bindView(
             item: MealByCountry,
-            viewBinding: ItemMealCountryBinding,
             eventClickItemMealByCountryOnList: EventClickItemMealByCountryOnList?
         ) {
             viewBinding.titleItemMealByCountry.text = item.strArea
@@ -55,4 +52,5 @@ class MealByCountryAdapter(
 
         }
     }
+
 }

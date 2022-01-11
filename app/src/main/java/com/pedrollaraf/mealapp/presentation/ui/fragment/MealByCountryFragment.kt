@@ -44,13 +44,6 @@ class MealByCountryFragment : Fragment(), ObservableEvents {
         _binding = null
     }
 
-    private fun initView() {
-        viewBinding.titleNoData.visibility = View.GONE
-        (activity as MainActivity).showHideProgressBar(true)
-        setupAdapter()
-        viewModelMealBy.getMealCountry()
-    }
-
     override fun initObservables() {
         viewModelMealBy.listMealByCountryLiveData.observe(viewLifecycleOwner, Observer {
             (activity as MainActivity).showHideProgressBar(false)
@@ -79,6 +72,14 @@ class MealByCountryFragment : Fragment(), ObservableEvents {
                 }
             }
     }
+
+    private fun initView() {
+        viewBinding.titleNoData.visibility = View.GONE
+        (activity as MainActivity).showHideProgressBar(true)
+        setupAdapter()
+        viewModelMealBy.getMealCountry()
+    }
+
 
     private fun setupAdapter() {
         mealByCountryAdapter = MealByCountryAdapter(listMealByCountries = listOf())

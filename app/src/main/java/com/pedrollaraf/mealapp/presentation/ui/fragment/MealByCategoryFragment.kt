@@ -80,7 +80,7 @@ class MealByCategoryFragment : Fragment(), ObservableEvents {
     }
 
     private fun setupAdapter() {
-        mealByCategoryAdapter = MealByCategoryAdapter(listOf())
+        mealByCategoryAdapter = MealByCategoryAdapter(listMealByCategories = listOf())
         viewBinding.recyclerViewMealByCategory.layoutManager =
             StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         viewBinding.recyclerViewMealByCategory.adapter = mealByCategoryAdapter
