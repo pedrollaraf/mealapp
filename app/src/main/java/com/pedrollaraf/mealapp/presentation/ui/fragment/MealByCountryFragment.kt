@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.pedrollaraf.mealapp.common.utils.ObservableEvents
 import com.pedrollaraf.mealapp.databinding.FragmentMealByCountryBinding
 import com.pedrollaraf.mealapp.domain.models.MealByCountry
+import com.pedrollaraf.mealapp.presentation.eventclick.EventClickItemMealByCategoryOnList
+import com.pedrollaraf.mealapp.presentation.eventclick.EventClickItemMealByCountryOnList
 import com.pedrollaraf.mealapp.presentation.ui.activity.MainActivity
 import com.pedrollaraf.mealapp.presentation.ui.adapters.MealByCountryAdapter
 import com.pedrollaraf.mealapp.presentation.viewmodels.MealByCountryViewModel
@@ -34,13 +36,14 @@ class MealByCountryFragment : Fragment(), ObservableEvents {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initObservables()
         initView()
+        initObservables()
     }
 
     private fun initView() {
         viewBinding.titleNoData.visibility = View.GONE
         (activity as MainActivity).showHideProgressBar(true)
+        setupAdapter()
         viewModelMealBy.getMealCountry()
     }
 
@@ -51,17 +54,24 @@ class MealByCountryFragment : Fragment(), ObservableEvents {
                 it.isNotEmpty() -> {
                     viewBinding.recyclerViewMealByCountry.visibility = View.VISIBLE
                     viewBinding.titleNoData.visibility = View.GONE
-                    setupAdapter(it)
+                    mealByCountryAdapter.updateList(it)
                 }
                 else -> {
                     viewBinding.titleNoData.visibility = View.VISIBLE
                 }
             }
         })
+
+        mealByCountryAdapter.eventClickItemMealByCountryOnList =
+            object : EventClickItemMealByCountryOnList {
+                override fun onClickItemMealByCountry(country: String) {
+                    val teste = country
+                }
+            }
     }
 
-    private fun setupAdapter(list: List<MealByCountry>) {
-        mealByCountryAdapter = MealByCountryAdapter(listMealByCountries = list)
+    private fun setupAdapter() {
+        mealByCountryAdapter = MealByCountryAdapter(listMealByCountries = listOf())
         viewBinding.recyclerViewMealByCountry.layoutManager =
             StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         viewBinding.recyclerViewMealByCountry.adapter = mealByCountryAdapter

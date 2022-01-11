@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.pedrollaraf.mealapp.common.utils.ObservableEvents
 import com.pedrollaraf.mealapp.databinding.FragmentMealByCategoryBinding
-import com.pedrollaraf.mealapp.domain.models.MealByCategory
+import com.pedrollaraf.mealapp.presentation.eventclick.EventClickItemMealByCategoryOnList
 import com.pedrollaraf.mealapp.presentation.ui.activity.MainActivity
 import com.pedrollaraf.mealapp.presentation.ui.adapters.MealByCategoryAdapter
 import com.pedrollaraf.mealapp.presentation.viewmodels.MealByCategoryViewModel
@@ -33,8 +33,8 @@ class MealByCategoryFragment : Fragment(), ObservableEvents {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initObservables()
         initView()
+        initObservables()
     }
 
     override fun initObservables() {
@@ -44,23 +44,30 @@ class MealByCategoryFragment : Fragment(), ObservableEvents {
                 it.isNotEmpty() -> {
                     viewBinding.recyclerViewMealByCategory.visibility = View.VISIBLE
                     viewBinding.titleNoData.visibility = View.GONE
-                    setupAdapter(it)
+                    mealByCategoryAdapter.updateList(it)
                 }
                 else -> {
                     viewBinding.titleNoData.visibility = View.VISIBLE
                 }
             }
         })
+        mealByCategoryAdapter.eventClickItemMealByCategoryOnList =
+            object : EventClickItemMealByCategoryOnList {
+                override fun onClickItemMealByCategory(categoryName: String) {
+                    val teste = categoryName
+                }
+            }
     }
 
     private fun initView() {
         viewBinding.titleNoData.visibility = View.GONE
         (activity as MainActivity).showHideProgressBar(true)
+        setupAdapter()
         viewModelBy.getMealCategories()
     }
 
-    private fun setupAdapter(list: List<MealByCategory>) {
-        mealByCategoryAdapter = MealByCategoryAdapter(listMealByCategories = list)
+    private fun setupAdapter() {
+        mealByCategoryAdapter = MealByCategoryAdapter(listOf())
         viewBinding.recyclerViewMealByCategory.layoutManager =
             StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         viewBinding.recyclerViewMealByCategory.adapter = mealByCategoryAdapter

@@ -6,7 +6,8 @@
     android:layout_margin="@dimen/cardView_margin_default"
     app:cardCornerRadius="@dimen/cardView_corners"
     app:cardElevation="@dimen/cardView_elevation"
-    app:cardBackgroundColor="@color/darkBrown">
+    app:cardBackgroundColor="@color/darkBrown"
+    android:id="@+id/meal_country_button">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
