@@ -22,7 +22,7 @@ class MealByCategoryFragment : Fragment(), ObservableEvents {
     private val viewBinding get() = _binding!!
 
     private val viewModelBy: MealByCategoryViewModel by viewModel()
-    private lateinit var mealByCategoryAdapter: MealByCategoryAdapter
+    private var mealByCategoryAdapter = MealByCategoryAdapter(listMealByCategories = listOf())
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,6 +31,11 @@ class MealByCategoryFragment : Fragment(), ObservableEvents {
     ): View {
         _binding = FragmentMealByCategoryBinding.inflate(inflater, container, false)
         return viewBinding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModelBy.getMealCategories()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -76,11 +81,9 @@ class MealByCategoryFragment : Fragment(), ObservableEvents {
         viewBinding.titleNoData.visibility = View.GONE
         (activity as MainActivity).showHideProgressBar(true)
         setupAdapter()
-        viewModelBy.getMealCategories()
     }
 
     private fun setupAdapter() {
-        mealByCategoryAdapter = MealByCategoryAdapter(listMealByCategories = listOf())
         viewBinding.recyclerViewMealByCategory.layoutManager =
             StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         viewBinding.recyclerViewMealByCategory.adapter = mealByCategoryAdapter

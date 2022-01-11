@@ -22,7 +22,7 @@ class MealByCountryFragment : Fragment(), ObservableEvents {
     private val viewBinding get() = _binding!!
 
     private val viewModelMealBy: MealByCountryViewModel by viewModel()
-    private lateinit var mealByCountryAdapter: MealByCountryAdapter
+    private var mealByCountryAdapter = MealByCountryAdapter(listMealByCountries = listOf())
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +37,11 @@ class MealByCountryFragment : Fragment(), ObservableEvents {
         super.onViewCreated(view, savedInstanceState)
         initView()
         initObservables()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModelMealBy.getMealCountry()
     }
 
     override fun onDestroyView() {
@@ -77,12 +82,10 @@ class MealByCountryFragment : Fragment(), ObservableEvents {
         viewBinding.titleNoData.visibility = View.GONE
         (activity as MainActivity).showHideProgressBar(true)
         setupAdapter()
-        viewModelMealBy.getMealCountry()
     }
 
 
     private fun setupAdapter() {
-        mealByCountryAdapter = MealByCountryAdapter(listMealByCountries = listOf())
         viewBinding.recyclerViewMealByCountry.layoutManager =
             StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
         viewBinding.recyclerViewMealByCountry.adapter = mealByCountryAdapter
