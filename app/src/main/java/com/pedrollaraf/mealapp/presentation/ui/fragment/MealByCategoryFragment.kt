@@ -39,6 +39,11 @@ class MealByCategoryFragment : Fragment(), ObservableEvents {
         initObservables()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     override fun initObservables() {
         viewModelBy.listMealByByCategoryLiveData.observe(viewLifecycleOwner, Observer {
             (activity as MainActivity).showHideProgressBar(false)

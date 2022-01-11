@@ -39,6 +39,11 @@ class MealByCountryFragment : Fragment(), ObservableEvents {
         initObservables()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun initView() {
         viewBinding.titleNoData.visibility = View.GONE
         (activity as MainActivity).showHideProgressBar(true)
