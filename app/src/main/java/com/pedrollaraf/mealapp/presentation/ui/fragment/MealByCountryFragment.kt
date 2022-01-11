@@ -6,11 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.pedrollaraf.mealapp.common.utils.ObservableEvents
 import com.pedrollaraf.mealapp.databinding.FragmentMealByCountryBinding
-import com.pedrollaraf.mealapp.domain.models.MealByCountry
-import com.pedrollaraf.mealapp.presentation.eventclick.EventClickItemMealByCategoryOnList
 import com.pedrollaraf.mealapp.presentation.eventclick.EventClickItemMealByCountryOnList
 import com.pedrollaraf.mealapp.presentation.ui.activity.MainActivity
 import com.pedrollaraf.mealapp.presentation.ui.adapters.MealByCountryAdapter
@@ -65,7 +64,13 @@ class MealByCountryFragment : Fragment(), ObservableEvents {
         mealByCountryAdapter.eventClickItemMealByCountryOnList =
             object : EventClickItemMealByCountryOnList {
                 override fun onClickItemMealByCountry(country: String) {
-                    val teste = country
+                    findNavController().navigate(
+                        MealByCountryFragmentDirections.
+                        actionMealByCountryFragmentToTypeMealFragment(
+                            null,
+                            country
+                        )
+                    )
                 }
             }
     }

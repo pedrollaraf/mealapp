@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.pedrollaraf.mealapp.common.utils.ObservableEvents
 import com.pedrollaraf.mealapp.databinding.FragmentMealByCategoryBinding
@@ -19,6 +20,7 @@ class MealByCategoryFragment : Fragment(), ObservableEvents {
 
     private var _binding: FragmentMealByCategoryBinding? = null
     private val viewBinding get() = _binding!!
+
     private val viewModelBy: MealByCategoryViewModel by viewModel()
     private lateinit var mealByCategoryAdapter: MealByCategoryAdapter
 
@@ -54,7 +56,13 @@ class MealByCategoryFragment : Fragment(), ObservableEvents {
         mealByCategoryAdapter.eventClickItemMealByCategoryOnList =
             object : EventClickItemMealByCategoryOnList {
                 override fun onClickItemMealByCategory(categoryName: String) {
-                    val teste = categoryName
+                    findNavController().navigate(
+                        MealByCategoryFragmentDirections.
+                        actionMealByCategoryFragmentToTypeMealFragment(
+                            categoryName,
+                            null
+                        )
+                    )
                 }
             }
     }

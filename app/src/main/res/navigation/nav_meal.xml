@@ -9,13 +9,56 @@
         android:id="@+id/mealByCategoryFragment"
         android:name="com.pedrollaraf.mealapp.presentation.ui.fragment.MealByCategoryFragment"
         android:label="MealByCategoryFragment"
-        tools:layout="@layout/fragment_meal_by_category"/>
+        tools:layout="@layout/fragment_meal_by_category">
+
+        <action
+            android:id="@+id/action_mealByCategoryFragment_to_typeMealFragment"
+            app:destination="@id/typeMealFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/mealByCategoryFragment">
+        </action>
+
+    </fragment>
 
 
     <fragment
         android:id="@+id/mealByCountryFragment"
         android:name="com.pedrollaraf.mealapp.presentation.ui.fragment.MealByCountryFragment"
         android:label="MealByCountryFragment"
-        tools:layout="@layout/fragment_meal_by_country"/>
+        tools:layout="@layout/fragment_meal_by_country">
+
+        <action
+            android:id="@+id/action_mealByCountryFragment_to_typeMealFragment"
+            app:destination="@id/typeMealFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/mealByCountryFragment"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/typeMealFragment"
+        android:name="com.pedrollaraf.mealapp.presentation.ui.fragment.TypeMealFragment"
+        android:label="TypeMealFragment"
+        tools:layout="@layout/fragment_type_meal">
+
+        <argument
+            android:name="categoryName"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null"/>
+
+        <argument
+            android:name="countryName"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null"/>
+
+    </fragment>
 
 </navigation>

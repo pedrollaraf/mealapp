@@ -2,8 +2,8 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'kotlin-android-extensions'
-    id 'androidx.navigation.safeargs'
+    id 'kotlin-parcelize'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -48,7 +48,7 @@ dependencies {
     def version_material_design = "1.4.0"
     def version_constraint_layout = "2.1.2"
     def version_navigation_component ="1.0.0"
-    def version_koin = "3.1.3"
+    def version_koin = '3.1.5'
 
     def version_retrofit = "2.9.0"
     def version_retrofit_interceptor = "5.0.0-alpha.3"

@@ -48,7 +48,6 @@ class MealByCategoryAdapter(
             eventClickItemMealByCategoryOnList: EventClickItemMealByCategoryOnList?
         ) {
             viewBinding.titleItemMealByCountry.text = item.strCategory
-            viewBinding.descriptionItemMealByCountry.text = item.strCategoryDescription
             viewBinding.imageItemMealByCategory.load(item.strCategoryThumb){
                 listener(
                     // pass two arguments
