@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_FADE
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.pedrollaraf.mealapp.R
 import com.pedrollaraf.mealapp.common.utils.ListenerEvents
 import com.pedrollaraf.mealapp.common.di.DIMealManager
@@ -15,12 +17,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
 
     private lateinit var viewBinding: ActivityMainBinding
     private var auxFg = "MealByCategoryFragment"
+    private lateinit var navHostFragment : NavHostFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initDependencies(savedInstanceState)
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
+        initNavHostFragment()
         initListeners()
     }
 
@@ -46,6 +50,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
                     replaceFragment(R.id.mealByCategoryFragment)//ID navigation
                 }
             }
+            R.id.toolbar_back_button -> {
+                findNavController(viewBinding.mealNavHost.id).popBackStack()
+            }
         }
     }
 
@@ -54,7 +61,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
     }
 
     private fun replaceFragment(fragmentID: Int) {
-        val navHostFragment = NavHostFragment()
         supportFragmentManager.beginTransaction()
             //viewBinding.myNavHostEstablishmentFragment.id
             .replace(viewBinding.mealNavHost.id, navHostFragment, "MealHostNav")
@@ -67,9 +73,25 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
             }.commit()
     }
 
+    private fun initNavHostFragment(){
+        navHostFragment = supportFragmentManager.findFragmentById(
+            R.id.meal_nav_host
+        ) as NavHostFragment
+    }
+
     override fun initListeners() {
         viewBinding.toolbar.toolbarMealByCategoryButton.setOnClickListener(this)
         viewBinding.toolbar.toolbarMealByCountryButton.setOnClickListener(this)
+        viewBinding.toolbar.toolbarBackButton.setOnClickListener(this)
+
+        navHostFragment.navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            if(destination.id == R.id.typeMealFragment){
+                viewBinding.toolbar.toolbarBackButton.visibility = View.VISIBLE
+            }else{
+                viewBinding.toolbar.toolbarBackButton.visibility = View.GONE
+            }
+        }
+
     }
 
     fun showHideProgressBar(visibility: Boolean) {
