@@ -3,17 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_meal"
-    app:startDestination="@id/mealByCategoryFragment">
+    app:startDestination="@id/mealCategoriesFragment">
 
     <fragment
-        android:id="@+id/mealByCategoryFragment"
-        android:name="com.pedrollaraf.mealapp.presentation.ui.fragment.MealByCategoryFragment"
-        android:label="MealByCategoryFragment"
-        tools:layout="@layout/fragment_meal_by_category">
+        android:id="@+id/mealCategoriesFragment"
+        android:name="com.pedrollaraf.mealapp.presentation.ui.fragment.MealCategoriesFragment"
+        android:label="MealCategoriesFragment"
+        tools:layout="@layout/fragment_meal_categories">
 
         <action
-            android:id="@+id/action_mealByCategoryFragment_to_typeMealFragment"
-            app:destination="@id/typeMealFragment"
+            android:id="@+id/action_mealCategoriesFragment_to_listMealFragment"
+            app:destination="@id/listMealFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -24,14 +24,14 @@
 
 
     <fragment
-        android:id="@+id/mealByCountryFragment"
-        android:name="com.pedrollaraf.mealapp.presentation.ui.fragment.MealByCountryFragment"
+        android:id="@+id/mealCountriesFragment"
+        android:name="com.pedrollaraf.mealapp.presentation.ui.fragment.MealCountriesFragment"
         android:label="MealByCountryFragment"
-        tools:layout="@layout/fragment_meal_by_country">
+        tools:layout="@layout/fragment_meal_countries">
 
         <action
-            android:id="@+id/action_mealByCountryFragment_to_typeMealFragment"
-            app:destination="@id/typeMealFragment"
+            android:id="@+id/action_mealCountriesFragment_to_listMealFragment"
+            app:destination="@id/listMealFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -41,10 +41,10 @@
     </fragment>
 
     <fragment
-        android:id="@+id/typeMealFragment"
-        android:name="com.pedrollaraf.mealapp.presentation.ui.fragment.TypeMealFragment"
-        android:label="TypeMealFragment"
-        tools:layout="@layout/fragment_type_meal">
+        android:id="@+id/listMealFragment"
+        android:name="com.pedrollaraf.mealapp.presentation.ui.fragment.MealListFragment"
+        android:label="MealListFragment"
+        tools:layout="@layout/fragment_list_meal">
 
         <argument
             android:name="categoryName"

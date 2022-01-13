@@ -1,26 +1,26 @@
 package com.pedrollaraf.mealapp.common.di
 
-import com.pedrollaraf.mealapp.data.datasource.remote.di.getMealByCountryDataSourceModules
-import com.pedrollaraf.mealapp.data.datasource.remote.di.getMealByCategoryDataSourceModules
-import com.pedrollaraf.mealapp.data.di.getMealByCountryDataModules
-import com.pedrollaraf.mealapp.data.service.di.getMealByCategoryServiceModules
-import com.pedrollaraf.mealapp.data.di.getMealByCategoryDataModules
-import com.pedrollaraf.mealapp.data.service.di.getMealByCountryServiceModules
+import com.pedrollaraf.mealapp.data.datasource.remote.di.getMealCountriesDataSourceModules
+import com.pedrollaraf.mealapp.data.datasource.remote.di.getMealCategoriesDataSourceModules
+import com.pedrollaraf.mealapp.data.di.getMealCountriesDataModules
+import com.pedrollaraf.mealapp.data.service.di.getMealCategoriesServiceModules
+import com.pedrollaraf.mealapp.data.di.getMealCategoriesDataModules
+import com.pedrollaraf.mealapp.data.service.di.getMealCountriesServiceModules
 
 
 class DIDataModule {
     fun getRepositoriesModules() = listOf (
-        getMealByCategoryDataModules(),
-        getMealByCountryDataModules()
+        getMealCategoriesDataModules(),
+        getMealCountriesDataModules()
     )
 
     fun getDataSourceModules() = listOf (
-        getMealByCategoryDataSourceModules(),
-        getMealByCountryDataSourceModules()
+        getMealCategoriesDataSourceModules(),
+        getMealCountriesDataSourceModules()
     )
 
     fun getServicesModules() = listOf (
-        getMealByCategoryServiceModules(),
-        getMealByCountryServiceModules()
+        getMealCategoriesServiceModules(),
+        getMealCountriesServiceModules()
     )
 }

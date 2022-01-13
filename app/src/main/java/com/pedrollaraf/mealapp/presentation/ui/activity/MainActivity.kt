@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_FADE
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import com.pedrollaraf.mealapp.R
 import com.pedrollaraf.mealapp.common.utils.ListenerEvents
 import com.pedrollaraf.mealapp.common.di.DIMealManager
@@ -16,7 +15,7 @@ import com.pedrollaraf.mealapp.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
 
     private lateinit var viewBinding: ActivityMainBinding
-    private var auxFg = "MealByCategoryFragment"
+    private var auxFg = "MealCategoriesFragment"
     private lateinit var navHostFragment : NavHostFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,17 +36,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
     override fun onClick(view: View) {
         when (view.id) {
             R.id.toolbar_meal_by_country_button -> {
-                val checker = checkFragment("MealByCountryFragment", auxFg)
+                val checker = checkFragment("MealCountriesFragment", auxFg)
                 if (!checker) {
-                    auxFg = "MealByCountryFragment"
-                    replaceFragment(R.id.mealByCountryFragment)//ID navigation
+                    auxFg = "MealCountriesFragment"
+                    replaceFragment(R.id.mealCountriesFragment)//ID navigation
                 }
             }
             R.id.toolbar_meal_by_category_button -> {
-                val checker = checkFragment("MealByCategoryFragment", auxFg)
+                val checker = checkFragment("MealCategoriesFragment", auxFg)
                 if (!checker) {
-                    auxFg = "MealByCategoryFragment"
-                    replaceFragment(R.id.mealByCategoryFragment)//ID navigation
+                    auxFg = "MealCategoriesFragment"
+                    replaceFragment(R.id.mealCategoriesFragment)//ID navigation
                 }
             }
             R.id.toolbar_back_button -> {
@@ -85,7 +84,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
         viewBinding.toolbar.toolbarBackButton.setOnClickListener(this)
 
         navHostFragment.navController.addOnDestinationChangedListener { controller, destination, arguments ->
-            if(destination.id == R.id.typeMealFragment){
+            if(destination.id == R.id.listMealFragment){
                 viewBinding.toolbar.toolbarBackButton.visibility = View.VISIBLE
             }else{
                 viewBinding.toolbar.toolbarBackButton.visibility = View.GONE
