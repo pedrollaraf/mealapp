@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/lightBrown">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image_meal"
+            android:layout_width="match_parent"
+            android:layout_height="215dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/grey2"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/content_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/image_meal"
+            android:layout_margin="15dp"
+            app:cardCornerRadius="@dimen/cardView_corners"
+            app:cardElevation="@dimen/cardView_elevation"
+            app:cardBackgroundColor="@color/darkBrown">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="15dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/meal_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="@string/meal_name"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:layout_marginHorizontal="15dp"
+                    android:textColor="@color/white"/>
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/meal_category_image"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/ic_meal_category"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintTop_toBottomOf="@+id/meal_name"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/meal_category_name"
+                    app:layout_constraintTop_toTopOf="@+id/meal_category_image"
+                    app:layout_constraintStart_toEndOf="@+id/meal_category_image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/meal_category_image"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    tools:text="Beef"
+                    android:textSize="16sp"
+                    android:layout_marginHorizontal="10dp"
+                    android:textColor="@color/grey2"/>
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/meal_country_image"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/ic_meal_country"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@+id/meal_category_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/meal_country_name"
+                    app:layout_constraintTop_toTopOf="@+id/meal_country_image"
+                    app:layout_constraintStart_toEndOf="@+id/meal_country_image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/meal_country_image"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    tools:text="Italian"
+                    android:textSize="16sp"
+                    android:layout_marginHorizontal="10dp"
+                    android:textColor="@color/grey2"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/meal_ingredients_measures"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/content_info"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/ingredients_list"
+            android:layout_margin="15dp"
+            android:textSize="14sp"
+            android:textColor="@color/grey2"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/meal_instructions"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/meal_ingredients_measures"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/meal_instructions"
+            android:layout_margin="15dp"
+            android:textSize="14sp"
+            android:textColor="@color/grey2"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

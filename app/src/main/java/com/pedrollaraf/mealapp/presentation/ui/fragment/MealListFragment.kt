@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.pedrollaraf.mealapp.common.utils.ObservableEvents
@@ -80,7 +81,11 @@ class MealListFragment : Fragment(), ObservableEvents {
         mealListAdapter.eventClickItemMealList =
             object : EventClickItemMealList {
                 override fun onClickItemMealList(itemName: String) {
-
+                    findNavController().navigate(
+                        MealListFragmentDirections.actionListMealFragmentToMealDetailsFragment(
+                            itemName
+                        )
+                    )
                 }
             }
     }
@@ -97,7 +102,7 @@ class MealListFragment : Fragment(), ObservableEvents {
         viewBinding.recyclerViewMealList.adapter = mealListAdapter
     }
 
-    private fun handleList(list : List<MealFromCategoryOrCountry>){
+    private fun handleList(list: List<MealFromCategoryOrCountry>) {
         (activity as MainActivity).showHideProgressBar(false)
         when {
             list.isNotEmpty() -> {

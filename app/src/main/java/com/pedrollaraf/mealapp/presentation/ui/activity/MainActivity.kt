@@ -7,8 +7,8 @@ import androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_FADE
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.pedrollaraf.mealapp.R
-import com.pedrollaraf.mealapp.common.utils.ListenerEvents
 import com.pedrollaraf.mealapp.common.di.DIMealManager
+import com.pedrollaraf.mealapp.common.utils.ListenerEvents
 import com.pedrollaraf.mealapp.common.utils.Screen
 import com.pedrollaraf.mealapp.databinding.ActivityMainBinding
 
@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
 
     private lateinit var viewBinding: ActivityMainBinding
     private var auxFg = "MealCategoriesFragment"
-    private lateinit var navHostFragment : NavHostFragment
+    private lateinit var navHostFragment: NavHostFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,14 +35,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
 
     override fun onClick(view: View) {
         when (view.id) {
-            R.id.toolbar_meal_by_country_button -> {
+            R.id.toolbar_meal_countries_button -> {
                 val checker = checkFragment("MealCountriesFragment", auxFg)
                 if (!checker) {
                     auxFg = "MealCountriesFragment"
                     replaceFragment(R.id.mealCountriesFragment)//ID navigation
                 }
             }
-            R.id.toolbar_meal_by_category_button -> {
+            R.id.toolbar_meal_categories_button -> {
                 val checker = checkFragment("MealCategoriesFragment", auxFg)
                 if (!checker) {
                     auxFg = "MealCategoriesFragment"
@@ -72,22 +72,28 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
             }.commit()
     }
 
-    private fun initNavHostFragment(){
+    private fun initNavHostFragment() {
         navHostFragment = supportFragmentManager.findFragmentById(
             R.id.meal_nav_host
         ) as NavHostFragment
     }
 
     override fun initListeners() {
-        viewBinding.toolbar.toolbarMealByCategoryButton.setOnClickListener(this)
-        viewBinding.toolbar.toolbarMealByCountryButton.setOnClickListener(this)
+        viewBinding.toolbar.toolbarMealCategoriesButton.setOnClickListener(this)
+        viewBinding.toolbar.toolbarMealCountriesButton.setOnClickListener(this)
         viewBinding.toolbar.toolbarBackButton.setOnClickListener(this)
 
         navHostFragment.navController.addOnDestinationChangedListener { controller, destination, arguments ->
-            if(destination.id == R.id.listMealFragment){
+            if (destination.id == R.id.listMealFragment || destination.id == R.id.mealDetailsFragment) {
                 viewBinding.toolbar.toolbarBackButton.visibility = View.VISIBLE
-            }else{
+                viewBinding.toolbar.toolbarMealCategoriesButton.visibility = View.GONE
+                viewBinding.toolbar.toolbarMealFavoriteButton.visibility = View.GONE
+                viewBinding.toolbar.toolbarMealCountriesButton.visibility = View.GONE
+            } else {
                 viewBinding.toolbar.toolbarBackButton.visibility = View.GONE
+                viewBinding.toolbar.toolbarMealCategoriesButton.visibility = View.VISIBLE
+                viewBinding.toolbar.toolbarMealFavoriteButton.visibility = View.VISIBLE
+                viewBinding.toolbar.toolbarMealCountriesButton.visibility = View.VISIBLE
             }
         }
 
@@ -97,13 +103,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
         if (visibility) {
             viewBinding.progressBar.visibility = View.VISIBLE
             viewBinding.activityContent.alpha = 0.2f
-            Screen.enableDisableView(this,false)
+            Screen.enableDisableView(this, false)
 
 
         } else {
             viewBinding.progressBar.visibility = View.GONE
             viewBinding.activityContent.alpha = 1f
-            Screen.enableDisableView(this,true)
+            Screen.enableDisableView(this, true)
         }
     }
 }

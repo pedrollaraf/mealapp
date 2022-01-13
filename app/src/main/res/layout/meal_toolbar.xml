@@ -16,22 +16,22 @@
         android:padding="3dp"
         app:srcCompat="@drawable/ic_back"
         android:background="@drawable/ripple_background_button_toolbar"
-        android:visibility="gone"/>
+        android:visibility="visible"/>
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/toolbar_meal_by_category_button"
+        android:id="@+id/toolbar_meal_categories_button"
         android:layout_width="36dp"
         android:layout_height="36dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/toolbar_meal_by_country_button"
+        app:layout_constraintEnd_toStartOf="@+id/toolbar_meal_countries_button"
         android:layout_marginEnd="6dp"
         android:padding="3dp"
         app:srcCompat="@drawable/ic_meal_category"
         android:background="@drawable/ripple_background_button_toolbar"/>
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/toolbar_meal_by_country_button"
+        android:id="@+id/toolbar_meal_countries_button"
         android:layout_width="36dp"
         android:layout_height="36dp"
         app:layout_constraintTop_toTopOf="parent"
@@ -48,7 +48,7 @@
         android:layout_height="36dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/toolbar_meal_by_category_button"
+        app:layout_constraintEnd_toStartOf="@+id/toolbar_meal_categories_button"
         android:layout_marginEnd="6dp"
         android:padding="3dp"
         app:srcCompat="@drawable/ic_favorite_disabled"
