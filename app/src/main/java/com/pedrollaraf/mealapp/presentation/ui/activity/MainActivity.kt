@@ -8,6 +8,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.pedrollaraf.mealapp.R
 import com.pedrollaraf.mealapp.common.di.DIMealManager
+import com.pedrollaraf.mealapp.common.keys.MainActivityKeys
 import com.pedrollaraf.mealapp.common.utils.ListenerEvents
 import com.pedrollaraf.mealapp.common.utils.Screen
 import com.pedrollaraf.mealapp.databinding.ActivityMainBinding
@@ -15,7 +16,7 @@ import com.pedrollaraf.mealapp.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
 
     private lateinit var viewBinding: ActivityMainBinding
-    private var auxFg = "MealCategoriesFragment"
+    private var auxFg = MainActivityKeys.HomeFragment.toString()
     private lateinit var navHostFragment: NavHostFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,17 +37,33 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
     override fun onClick(view: View) {
         when (view.id) {
             R.id.toolbar_meal_countries_button -> {
-                val checker = checkFragment("MealCountriesFragment", auxFg)
+                val checker = checkFragment(
+                    MainActivityKeys.MealCountriesFragment.toString(),
+                    auxFg
+                )
                 if (!checker) {
-                    auxFg = "MealCountriesFragment"
+                    auxFg = MainActivityKeys.MealCountriesFragment.toString()
                     replaceFragment(R.id.mealCountriesFragment)//ID navigation
                 }
             }
             R.id.toolbar_meal_categories_button -> {
-                val checker = checkFragment("MealCategoriesFragment", auxFg)
+                val checker = checkFragment(
+                    MainActivityKeys.MealCategoriesFragment.toString(),
+                    auxFg
+                )
                 if (!checker) {
-                    auxFg = "MealCategoriesFragment"
+                    auxFg = MainActivityKeys.MealCategoriesFragment.toString()
                     replaceFragment(R.id.mealCategoriesFragment)//ID navigation
+                }
+            }
+            R.id.home_button ->{
+                val checker = checkFragment(
+                    MainActivityKeys.HomeFragment.toString(),
+                    auxFg
+                )
+                if (!checker) {
+                    auxFg = MainActivityKeys.HomeFragment.toString()
+                    replaceFragment(R.id.fragmentHome)//ID navigation
                 }
             }
             R.id.toolbar_back_button -> {
@@ -62,7 +79,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
     private fun replaceFragment(fragmentID: Int) {
         supportFragmentManager.beginTransaction()
             //viewBinding.myNavHostEstablishmentFragment.id
-            .replace(viewBinding.mealNavHost.id, navHostFragment, "MealHostNav")
+            .replace(
+                viewBinding.mealNavHost.id,
+                navHostFragment,
+                MainActivityKeys.MealHostNav.toString()
+            )
             .setTransition(TRANSIT_FRAGMENT_FADE)//TODO MUDAR TRANSIÇÃO
             .runOnCommit {
                 val navController = navHostFragment.navController
@@ -82,6 +103,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
         viewBinding.toolbar.toolbarMealCategoriesButton.setOnClickListener(this)
         viewBinding.toolbar.toolbarMealCountriesButton.setOnClickListener(this)
         viewBinding.toolbar.toolbarBackButton.setOnClickListener(this)
+        viewBinding.homeButton.setOnClickListener(this)
 
         navHostFragment.navController.addOnDestinationChangedListener { controller, destination, arguments ->
             if (destination.id == R.id.listMealFragment || destination.id == R.id.mealDetailsFragment) {
