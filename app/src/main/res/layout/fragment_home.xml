@@ -6,18 +6,9 @@
     android:layout_height="match_parent"
     android:background="@color/black90">
 
-    <androidx.appcompat.widget.SearchView
+    <include
         android:id="@+id/home_search_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/mediumBrown"
-        app:closeIcon="@drawable/ic_close"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:searchIcon="@drawable/ic_search"
-        android:paddingStart="10dp"
-        />
+        layout="@layout/meal_search_view"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_meal_list_home"

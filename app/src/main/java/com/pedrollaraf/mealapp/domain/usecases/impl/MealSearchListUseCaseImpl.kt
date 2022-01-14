@@ -8,6 +8,6 @@ class MealSearchListUseCaseImpl(
     private val mealSearchListRepository : MealSearchListRepository
 ) : MealSearchListUseCase {
     override suspend fun invoke(query : String): List<MealSearch> {
-        return mealSearchListRepository.getHomeSearchMeals(query)
+        return mealSearchListRepository.getSearchMeals(query)
     }
 }

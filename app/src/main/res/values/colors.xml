@@ -9,7 +9,6 @@
     <color name="white">#FFFFFFFF</color>
 
 
-
     <color name="black90">#E6000000</color>
     <color name="black80">#CC000000</color>
     <color name="black70">#B3000000</color>
@@ -32,6 +31,7 @@
     <color name="greySuperDark">#181818</color>
     <color name="greyOther">#535353</color>
 
+    <color name="search_hint">#d1d1d1</color>
     <color name="orange">#FFA541</color>
     <color name="darkBrown">#23180d</color>
     <color name="mediumBrown">#2d2013</color>

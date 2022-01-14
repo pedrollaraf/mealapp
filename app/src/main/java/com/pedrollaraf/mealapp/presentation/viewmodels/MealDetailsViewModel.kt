@@ -1,9 +1,27 @@
 package com.pedrollaraf.mealapp.presentation.viewmodels
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.pedrollaraf.mealapp.domain.models.MealSearch
+import com.pedrollaraf.mealapp.domain.usecases.abs.MealSearchUseCase
+import kotlinx.coroutines.launch
 
-class MealDetailsViewModel : ViewModel() {
+class MealDetailsViewModel(
+    private val mealSearchUseCase : MealSearchUseCase
+) : ViewModel() {
+
+    private val mealSearchMutableLiveData = MutableLiveData<MealSearch>()
+    val mealSearchLiveData: LiveData<MealSearch>
+        get() = mealSearchMutableLiveData
+
+    fun getMealDetails(query : String) {
+        viewModelScope.launch {
+            val mealDetail = mealSearchUseCase.invoke(query)
+            mealSearchMutableLiveData.postValue(mealDetail)
+        }
+    }
     
     fun getCompileListIngredients(item: MealSearch?): String {
         val ingredients = item?.strIngredient1 + "\n" +

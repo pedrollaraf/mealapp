@@ -60,6 +60,7 @@ class MealCountriesFragment : Fragment(), ObservableEvents {
                 }
                 else -> {
                     viewBinding.titleNoData.visibility = View.VISIBLE
+                    viewBinding.recyclerViewMealCountries.visibility = View.GONE
                 }
             }
         })

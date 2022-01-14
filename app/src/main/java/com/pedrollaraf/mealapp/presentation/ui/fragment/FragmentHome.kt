@@ -1,8 +1,10 @@
 package com.pedrollaraf.mealapp.presentation.ui.fragment
 
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -17,8 +19,15 @@ import com.pedrollaraf.mealapp.presentation.ui.adapters.HomeSearchListAdapter
 import com.pedrollaraf.mealapp.presentation.viewmodels.MealSearchViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
+import com.pedrollaraf.mealapp.R
+import com.pedrollaraf.mealapp.common.utils.Keyboard
+import android.view.WindowManager
 
-class FragmentHome : Fragment(), ObservableEvents {
+
+
+
+
+class FragmentHome : Fragment(), ObservableEvents, View.OnClickListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val viewBinding get() = _binding!!
@@ -39,6 +48,7 @@ class FragmentHome : Fragment(), ObservableEvents {
         super.onViewCreated(view, savedInstanceState)
         initView()
         initObservables()
+        initListeners()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +56,7 @@ class FragmentHome : Fragment(), ObservableEvents {
         viewModel.getHomeSearchMeals(randomLetter())
     }
 
-    fun randomLetter() : String{
+    private fun randomLetter() : String{
         return when (Random().nextInt(5)) {
             2 -> {
                 "a"
@@ -64,6 +74,26 @@ class FragmentHome : Fragment(), ObservableEvents {
                 "u"
             }
         }
+    }
+
+    private fun initListeners(){
+
+        viewBinding.homeSearchView.searchButton.setOnClickListener(this)
+        viewBinding.homeSearchView.closeSearchButton.setOnClickListener(this)
+
+        viewBinding.homeSearchView.edittextSearch.setOnKeyListener(object : View.OnKeyListener{
+            override fun onKey(view: View, keyCode: Int, event: KeyEvent): Boolean {
+                if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                    (activity as MainActivity).showHideProgressBar(true)
+                    Keyboard.hideKeyboard(requireView())
+                    viewModel.getHomeSearchMeals(
+                        viewBinding.homeSearchView.edittextSearch.text.toString()
+                    )
+                    return true
+                }
+                return false
+            }
+        })
     }
 
     override fun initObservables() {
@@ -109,6 +139,7 @@ class FragmentHome : Fragment(), ObservableEvents {
             }
             else -> {
                 viewBinding.titleNoData.visibility = View.VISIBLE
+                viewBinding.recyclerViewMealListHome.visibility = View.GONE
             }
         }
     }
@@ -116,5 +147,21 @@ class FragmentHome : Fragment(), ObservableEvents {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onClick(view: View) {
+        when(view.id){
+            R.id.search_button ->{
+                viewBinding.homeSearchView.edittextSearch.requestFocus()
+                Keyboard.showKeyboard(viewBinding.homeSearchView.edittextSearch)
+            }
+            R.id.close_search_button ->{
+                viewBinding.homeSearchView.edittextSearch.clearFocus()
+                Keyboard.hideKeyboard(requireView())
+                viewBinding.homeSearchView.edittextSearch.setText("")
+                (activity as MainActivity).showHideProgressBar(true)
+                viewModel.getHomeSearchMeals(randomLetter())
+            }
+        }
     }
 }

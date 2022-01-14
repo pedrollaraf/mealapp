@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import coil.load
 import com.pedrollaraf.mealapp.R
@@ -43,43 +44,57 @@ class MealDetailsFragment : Fragment(), ObservableEvents {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val mealName = args.mealName
+
+        if(!mealName.isNullOrEmpty()){
+            viewModel.getMealDetails(mealName)
+        }
     }
 
     private fun initView() {
         mealSearch = args.mealSearch
 
         if (mealSearch != null) {
-            viewBinding.mealName.text = mealSearch?.strMeal
-            viewBinding.mealCategoryName.text = mealSearch?.strCategory
-            viewBinding.mealCountryName.text = mealSearch?.strArea
-            viewBinding.mealIngredients.text = viewModel.getCompileListIngredients(
-                mealSearch
-            )
-            viewBinding.mealMeasures.text = viewModel.getCompileListMeasures(
-                mealSearch
-            )
-            viewBinding.mealInstructions.text = mealSearch?.strInstructions
-
-            viewBinding.imageMeal.load(mealSearch?.strMealThumb) {
-                listener(
-                    // pass two arguments
-                    onSuccess = { _, _ ->
-                        viewBinding.progressBarImage.visibility = View.GONE
-                        viewBinding.imageMeal.visibility = View.VISIBLE
-                    },
-                    onError = { _, _ ->
-                        viewBinding.progressBarImage.visibility = View.GONE
-                        viewBinding.imageMeal.visibility = View.VISIBLE
-                        viewBinding.imageMeal.setImageResource(R.drawable.ic_error)
-                    }
-                )
-            }
+            handleView(mealSearch!!)
         } else {
             viewBinding.mealName.text = args.mealName
         }
     }
 
-    override fun initObservables() {}
+    override fun initObservables() {
+        viewModel.mealSearchLiveData.observe(viewLifecycleOwner, Observer {
+            handleView(it)
+        })
+    }
+
+    private fun handleView(mealSearch: MealSearch){
+        viewBinding.mealName.text = mealSearch.strMeal
+        viewBinding.mealCategoryName.text = mealSearch.strCategory
+        viewBinding.mealCountryName.text = mealSearch.strArea
+        viewBinding.mealIngredients.text = viewModel.getCompileListIngredients(
+            mealSearch
+        )
+        viewBinding.mealMeasures.text = viewModel.getCompileListMeasures(
+            mealSearch
+        )
+        viewBinding.mealInstructions.text = mealSearch.strInstructions
+
+        viewBinding.imageMeal.load(mealSearch.strMealThumb) {
+            listener(
+                // pass two arguments
+                onSuccess = { _, _ ->
+                    viewBinding.progressBarImage.visibility = View.GONE
+                    viewBinding.imageMeal.visibility = View.VISIBLE
+                },
+                onError = { _, _ ->
+                    viewBinding.progressBarImage.visibility = View.GONE
+                    viewBinding.imageMeal.visibility = View.VISIBLE
+                    viewBinding.imageMeal.setImageResource(R.drawable.ic_error)
+                }
+            )
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

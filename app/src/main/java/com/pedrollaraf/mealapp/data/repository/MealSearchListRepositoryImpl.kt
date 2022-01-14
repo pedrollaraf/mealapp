@@ -8,7 +8,7 @@ import com.pedrollaraf.mealapp.domain.repository.MealSearchListRepository
 class MealSearchListRepositoryImpl(
     private val mealSearchListDataSource : MealSearchListRemoteDataSource
 ): MealSearchListRepository {
-    override suspend fun getHomeSearchMeals(query : String): List<MealSearch> {
+    override suspend fun getSearchMeals(query : String): List<MealSearch> {
         return mealSearchListDataSource.getHomeSearchMeals(query).toListMealSearchDomainModel()
     }
 }
