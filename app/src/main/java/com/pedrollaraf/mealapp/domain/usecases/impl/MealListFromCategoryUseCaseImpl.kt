@@ -2,11 +2,11 @@ package com.pedrollaraf.mealapp.domain.usecases.impl
 
 import com.pedrollaraf.mealapp.domain.models.MealFromCategoryOrCountry
 import com.pedrollaraf.mealapp.domain.repository.MealListFromCategoryRepository
-import com.pedrollaraf.mealapp.domain.usecases.abs.GetMealListFromCategoryUseCase
+import com.pedrollaraf.mealapp.domain.usecases.abs.MealListFromCategoryUseCase
 
-class GetMealListFromCategoryUseCaseImpl(
+class MealListFromCategoryUseCaseImpl(
     private val mealListFromCategoryRepository: MealListFromCategoryRepository
-) : GetMealListFromCategoryUseCase {
+) : MealListFromCategoryUseCase {
     override suspend fun invoke(categoryName : String): List<MealFromCategoryOrCountry> {
         return mealListFromCategoryRepository.getMealsFromCategory(categoryName)
     }

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="@dimen/cardView_margin_default"
+    app:cardCornerRadius="@dimen/cardView_corners"
+    app:cardElevation="@dimen/cardView_elevation"
+    app:cardBackgroundColor="@color/darkBrown"
+    android:id="@+id/meal_category_button">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/content_image"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/image_item_meal_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:scaleType="centerCrop"
+                android:background="@color/lightBrown"
+                android:visibility="visible"/>
+
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progress_bar_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@+id/content_image"
+                app:layout_constraintBottom_toBottomOf="@+id/content_image"
+                app:layout_constraintStart_toStartOf="@+id/content_image"
+                app:layout_constraintEnd_toEndOf="@+id/content_image"
+                android:visibility="visible"
+                app:indicatorColor="@color/orange"
+                android:indeterminate="true"
+                android:layout_centerInParent="true"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title_item_meal_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/content_image"
+            android:layout_marginHorizontal="15dp"
+            android:text="@string/app_name"
+            android:layout_marginTop="15dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title_item_meal_country"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/title_item_meal_search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/content_image"
+            android:layout_marginHorizontal="15dp"
+            tools:text="From where ? Italian"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title_item_meal_category"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/title_item_meal_country"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/content_image"
+            android:layout_marginHorizontal="15dp"
+            android:text="Category: Soap"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title_item_meal_search_tag"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/title_item_meal_category"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/content_image"
+            android:layout_marginHorizontal="15dp"
+            android:text="Tag"
+            android:ellipsize="end"
+            android:layout_marginTop="10dp"
+            android:maxLines="1"
+            android:textSize="12sp"
+            android:textColor="@color/orange"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

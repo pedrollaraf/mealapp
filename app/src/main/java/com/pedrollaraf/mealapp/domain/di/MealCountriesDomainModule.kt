@@ -1,17 +1,17 @@
 package com.pedrollaraf.mealapp.domain.di
 
-import com.pedrollaraf.mealapp.domain.usecases.abs.GetMealCountriesUseCase
-import com.pedrollaraf.mealapp.domain.usecases.abs.GetMealListFromCountryUseCase
-import com.pedrollaraf.mealapp.domain.usecases.impl.GetMealCountriesUseCaseImpl
-import com.pedrollaraf.mealapp.domain.usecases.impl.GetMealListFromCountryUseCaseImpl
+import com.pedrollaraf.mealapp.domain.usecases.abs.MealCountriesUseCase
+import com.pedrollaraf.mealapp.domain.usecases.abs.MealListFromCountryUseCase
+import com.pedrollaraf.mealapp.domain.usecases.impl.MealCountriesUseCaseImpl
+import com.pedrollaraf.mealapp.domain.usecases.impl.MealListFromCountryUseCaseImpl
 import org.koin.dsl.module
 
 fun getMealCountriesDomainModules() = module {
-    factory<GetMealCountriesUseCase> { GetMealCountriesUseCaseImpl(
+    factory<MealCountriesUseCase> { MealCountriesUseCaseImpl(
         getMealCountriesRepository = get()
     )}
 
-    factory<GetMealListFromCountryUseCase> { GetMealListFromCountryUseCaseImpl(
+    factory<MealListFromCountryUseCase> { MealListFromCountryUseCaseImpl(
         mealListFromCountryRepository = get()
     ) }
 }

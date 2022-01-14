@@ -3,8 +3,10 @@
     <string name="no_data">No Data</string>
     <string name="no_results">No Results</string>
     <string name="meal_name">Meal Name</string>
-    <string name="ingredients_list">Ingrendients list</string>
+    <string name="ingredients_list">Ingredients List</string>
     <string name="meal_instructions">Meal instructions</string>
     <string name="category">Category: </string>
     <string name="home_button">Home button</string>
+    <string name="measures_list">Measures List</string>
+    <string name="how_to_prepare">How to prepare ?</string>
 </resources>

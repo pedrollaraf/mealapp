@@ -7,10 +7,10 @@ import org.koin.dsl.module
 
 fun getMealCountriesViewModelModules() = module {
     viewModel { MealCountriesViewModel(
-        getMealCountriesUseCase = get()
+        mealCountriesUseCase = get()
     ) }
 
     viewModel { MealListFromCountryViewModel(
-        getMealListFromCountryUseCase = get()
+        mealListFromCountryUseCase = get()
     ) }
 }

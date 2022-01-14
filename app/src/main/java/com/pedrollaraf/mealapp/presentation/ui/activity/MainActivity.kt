@@ -108,11 +108,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
         navHostFragment.navController.addOnDestinationChangedListener { controller, destination, arguments ->
             if (destination.id == R.id.listMealFragment || destination.id == R.id.mealDetailsFragment) {
                 viewBinding.toolbar.toolbarBackButton.visibility = View.VISIBLE
+                viewBinding.homeButton.visibility = View.GONE
                 viewBinding.toolbar.toolbarMealCategoriesButton.visibility = View.GONE
                 viewBinding.toolbar.toolbarMealFavoriteButton.visibility = View.GONE
                 viewBinding.toolbar.toolbarMealCountriesButton.visibility = View.GONE
             } else {
                 viewBinding.toolbar.toolbarBackButton.visibility = View.GONE
+                viewBinding.homeButton.visibility = View.VISIBLE
                 viewBinding.toolbar.toolbarMealCategoriesButton.visibility = View.VISIBLE
                 viewBinding.toolbar.toolbarMealFavoriteButton.visibility = View.VISIBLE
                 viewBinding.toolbar.toolbarMealCountriesButton.visibility = View.VISIBLE

@@ -5,11 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pedrollaraf.mealapp.domain.models.MealCountry
-import com.pedrollaraf.mealapp.domain.usecases.abs.GetMealCountriesUseCase
+import com.pedrollaraf.mealapp.domain.usecases.abs.MealCountriesUseCase
 import kotlinx.coroutines.launch
 
 class MealCountriesViewModel(
-    private val getMealCountriesUseCase: GetMealCountriesUseCase
+    private val mealCountriesUseCase: MealCountriesUseCase
 ) : ViewModel() {
 
     private val mealCountriesMutableLiveData = MutableLiveData<List<MealCountry>>()
@@ -18,7 +18,7 @@ class MealCountriesViewModel(
 
     fun getListCountries() {
         viewModelScope.launch {
-            val listMealCountries = getMealCountriesUseCase.invoke()
+            val listMealCountries = mealCountriesUseCase.invoke()
             mealCountriesMutableLiveData.postValue(listMealCountries)
         }
     }

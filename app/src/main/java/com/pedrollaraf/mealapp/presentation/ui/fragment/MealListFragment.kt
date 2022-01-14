@@ -83,7 +83,8 @@ class MealListFragment : Fragment(), ObservableEvents {
                 override fun onClickItemMealList(itemName: String) {
                     findNavController().navigate(
                         MealListFragmentDirections.actionListMealFragmentToMealDetailsFragment(
-                            itemName
+                            mealName = itemName,
+                            mealSearch = null
                         )
                     )
                 }

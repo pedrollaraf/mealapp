@@ -7,9 +7,9 @@ import org.koin.dsl.module
 
 fun getMealCategoriesViewModelModules() = module {
     viewModel { MealCategoriesViewModel(
-        getMealCategoriesUseCase = get()
+        mealCategoriesUseCase = get()
     ) }
     viewModel { MealListFromCategoryViewModel(
-        getMealListFromCategoryUseCase = get()
+        mealListFromCategoryUseCase = get()
     ) }
 }
