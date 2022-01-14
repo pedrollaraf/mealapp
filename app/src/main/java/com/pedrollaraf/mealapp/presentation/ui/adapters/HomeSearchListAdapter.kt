@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.pedrollaraf.mealapp.R
-import com.pedrollaraf.mealapp.databinding.ItemHomeMealSearchBinding
+import com.pedrollaraf.mealapp.databinding.ItemMealSearchFavoriteBinding
 import com.pedrollaraf.mealapp.domain.models.MealSearch
 import com.pedrollaraf.mealapp.presentation.eventclick.EventClickItemMealHomeSearchList
 
@@ -17,7 +17,7 @@ class HomeSearchListAdapter(private var homeSearchList: List<MealSearch>) :
     var eventClickItemMealHomeSearchList: EventClickItemMealHomeSearchList? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeSearchViewHolder {
-        val viewBinding = ItemHomeMealSearchBinding.inflate(
+        val viewBinding = ItemMealSearchFavoriteBinding.inflate(
             LayoutInflater.from(parent.context),
             parent, false
         )
@@ -39,7 +39,7 @@ class HomeSearchListAdapter(private var homeSearchList: List<MealSearch>) :
         this.notifyDataSetChanged()
     }
 
-    class HomeSearchViewHolder(private val viewBinding: ItemHomeMealSearchBinding) :
+    class HomeSearchViewHolder(private val viewBinding: ItemMealSearchFavoriteBinding) :
         RecyclerView.ViewHolder(viewBinding.root) {
 
         fun bindView(

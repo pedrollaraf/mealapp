@@ -4,5 +4,6 @@ enum class MainActivityKeys {
     MealCategoriesFragment,
     MealCountriesFragment,
     MealHostNav,
-    HomeFragment
+    HomeFragment,
+    FavoriteFragment
 }

@@ -2,6 +2,7 @@ package com.pedrollaraf.mealapp.presentation.ui.activity
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentTransaction.TRANSIT_FRAGMENT_FADE
 import androidx.navigation.findNavController
@@ -56,7 +57,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
                     replaceFragment(R.id.mealCategoriesFragment)//ID navigation
                 }
             }
-            R.id.home_button ->{
+            R.id.toolbar_meal_favorite_button -> {
+                val checker = checkFragment(
+                    MainActivityKeys.FavoriteFragment.toString(),
+                    auxFg
+                )
+                if (!checker) {
+                    auxFg = MainActivityKeys.FavoriteFragment.toString()
+                    replaceFragment(R.id.fragmentFavorite)//ID navigation
+                }
+            }
+            R.id.home_button -> {
                 val checker = checkFragment(
                     MainActivityKeys.HomeFragment.toString(),
                     auxFg
@@ -102,6 +113,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
     override fun initListeners() {
         viewBinding.toolbar.toolbarMealCategoriesButton.setOnClickListener(this)
         viewBinding.toolbar.toolbarMealCountriesButton.setOnClickListener(this)
+        viewBinding.toolbar.toolbarMealFavoriteButton.setOnClickListener(this)
         viewBinding.toolbar.toolbarBackButton.setOnClickListener(this)
         viewBinding.homeButton.setOnClickListener(this)
 
