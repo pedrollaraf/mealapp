@@ -23,11 +23,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 import com.pedrollaraf.mealapp.R
 import com.pedrollaraf.mealapp.common.utils.Keyboard
-import android.view.WindowManager
-
-
-
-
 
 class FragmentHome : Fragment(), ObservableEvents, View.OnClickListener {
 
@@ -58,7 +53,7 @@ class FragmentHome : Fragment(), ObservableEvents, View.OnClickListener {
         viewModel.getHomeSearchMeals(randomLetter())
     }
 
-    private fun randomLetter() : String{
+    private fun randomLetter(): String {
         return when (Random().nextInt(5)) {
             2 -> {
                 "a"
@@ -78,12 +73,12 @@ class FragmentHome : Fragment(), ObservableEvents, View.OnClickListener {
         }
     }
 
-    private fun initListeners(){
+    private fun initListeners() {
 
         viewBinding.homeSearchView.searchButton.setOnClickListener(this)
         viewBinding.homeSearchView.closeSearchButton.setOnClickListener(this)
 
-        viewBinding.homeSearchView.edittextSearch.setOnKeyListener(object : View.OnKeyListener{
+        viewBinding.homeSearchView.edittextSearch.setOnKeyListener(object : View.OnKeyListener {
             override fun onKey(view: View, keyCode: Int, event: KeyEvent): Boolean {
                 if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
                     (activity as MainActivity).showHideProgressBar(true)
@@ -97,14 +92,14 @@ class FragmentHome : Fragment(), ObservableEvents, View.OnClickListener {
             }
         })
 
-        viewBinding.homeSearchView.edittextSearch.addTextChangedListener(object : TextWatcher{
+        viewBinding.homeSearchView.edittextSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(s.isNullOrBlank()){
+                if (s.isNullOrBlank()) {
                     viewBinding.homeSearchView.closeSearchButton.visibility = View.GONE
-                }else{
-                    if(viewBinding.homeSearchView.closeSearchButton.visibility != View.VISIBLE) {
+                } else {
+                    if (viewBinding.homeSearchView.closeSearchButton.visibility != View.VISIBLE) {
                         viewBinding.homeSearchView.closeSearchButton.visibility = View.VISIBLE
                     }
                 }
@@ -169,12 +164,12 @@ class FragmentHome : Fragment(), ObservableEvents, View.OnClickListener {
     }
 
     override fun onClick(view: View) {
-        when(view.id){
-            R.id.search_button ->{
+        when (view.id) {
+            R.id.search_button -> {
                 viewBinding.homeSearchView.edittextSearch.requestFocus()
                 Keyboard.showKeyboard(viewBinding.homeSearchView.edittextSearch)
             }
-            R.id.close_search_button ->{
+            R.id.close_search_button -> {
                 viewBinding.homeSearchView.edittextSearch.clearFocus()
                 Keyboard.hideKeyboard(requireView())
                 viewBinding.homeSearchView.edittextSearch.setText("")
