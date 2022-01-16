@@ -9,18 +9,19 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import coil.load
 import com.pedrollaraf.mealapp.R
+import com.pedrollaraf.mealapp.common.utils.ListenerEvents
 import com.pedrollaraf.mealapp.common.utils.ObservableEvents
 import com.pedrollaraf.mealapp.databinding.FragmentMealDetailsBinding
-import com.pedrollaraf.mealapp.domain.models.MealSearch
+import com.pedrollaraf.mealapp.domain.models.Meal
 import com.pedrollaraf.mealapp.presentation.viewmodels.MealDetailsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MealDetailsFragment : Fragment(), ObservableEvents {
+class MealDetailsFragment : Fragment(), ObservableEvents, ListenerEvents, View.OnClickListener {
 
     private var _binding: FragmentMealDetailsBinding? = null
     private val viewBinding get() = _binding!!
 
-    private var mealSearch: MealSearch? = null
+    private var meal: Meal? = null
 
 
     private val args: MealDetailsFragmentArgs by navArgs()
@@ -39,6 +40,7 @@ class MealDetailsFragment : Fragment(), ObservableEvents {
         super.onViewCreated(view, savedInstanceState)
         initView()
         initObservables()
+        initListeners()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,10 +54,10 @@ class MealDetailsFragment : Fragment(), ObservableEvents {
     }
 
     private fun initView() {
-        mealSearch = args.mealSearch
+        meal = args.meal
 
-        if (mealSearch != null) {
-            handleView(mealSearch!!)
+        if (meal != null) {
+            handleView(meal!!)
         } else {
             viewBinding.mealName.text = args.mealName
         }
@@ -63,23 +65,40 @@ class MealDetailsFragment : Fragment(), ObservableEvents {
 
     override fun initObservables() {
         viewModel.mealSearchLiveData.observe(viewLifecycleOwner, Observer {
+            meal = it
             handleView(it)
         })
     }
 
-    private fun handleView(mealSearch: MealSearch){
-        viewBinding.mealName.text = mealSearch.strMeal
-        viewBinding.mealCategoryName.text = mealSearch.strCategory
-        viewBinding.mealCountryName.text = mealSearch.strArea
+    override fun initListeners() {
+        viewBinding.mealFavoriteButton.setOnClickListener(this)
+    }
+
+    override fun onClick(view: View) {
+        when(view.id){
+            R.id.meal_favorite_button -> {
+                val currentMeal = meal
+                if(currentMeal != null) {
+                    viewModel.favoriteMeal(currentMeal)
+                }
+                //viewBinding.mealFavoriteButton.setImageResource(R.drawable.ic_favorite_enabled)
+            }
+        }
+    }
+
+    private fun handleView(meal: Meal){
+        viewBinding.mealName.text = meal.strMeal
+        viewBinding.mealCategoryName.text = meal.strCategory
+        viewBinding.mealCountryName.text = meal.strArea
         viewBinding.mealIngredients.text = viewModel.getCompileListIngredients(
-            mealSearch
+            meal
         )
         viewBinding.mealMeasures.text = viewModel.getCompileListMeasures(
-            mealSearch
+            meal
         )
-        viewBinding.mealInstructions.text = mealSearch.strInstructions
+        viewBinding.mealInstructions.text = meal.strInstructions
 
-        viewBinding.imageMeal.load(mealSearch.strMealThumb) {
+        viewBinding.imageMeal.load(meal.strMealThumb) {
             listener(
                 // pass two arguments
                 onSuccess = { _, _ ->

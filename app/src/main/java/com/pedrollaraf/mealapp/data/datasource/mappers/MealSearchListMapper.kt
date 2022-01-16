@@ -1,9 +1,9 @@
 package com.pedrollaraf.mealapp.data.datasource.mappers
 
-import com.pedrollaraf.mealapp.data.datasource.remote.modelresponse.MealSearchResponse
-import com.pedrollaraf.mealapp.domain.models.MealSearch
+import com.pedrollaraf.mealapp.data.datasource.remote.modelresponse.MealResponse
+import com.pedrollaraf.mealapp.domain.models.Meal
 
-fun List<MealSearchResponse>.toListMealSearchDomainModel() = mapNotNull {
+fun List<MealResponse>.toListMealSearchDomainModel() = mapNotNull {
     try {
         it.toMealSearchDomainModel()
     } catch (e: Exception) {
@@ -11,7 +11,7 @@ fun List<MealSearchResponse>.toListMealSearchDomainModel() = mapNotNull {
     }
 }
 
-internal fun MealSearchResponse.toMealSearchDomainModel() = MealSearch(
+internal fun MealResponse.toMealSearchDomainModel() = Meal(
     idMeal = idMeal.orEmpty(),
     strMeal = strMeal.orEmpty(),
     strDrinkAlternate = strDrinkAlternate.orEmpty(),

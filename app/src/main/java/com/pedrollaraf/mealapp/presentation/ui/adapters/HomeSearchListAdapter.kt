@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.pedrollaraf.mealapp.R
 import com.pedrollaraf.mealapp.databinding.ItemMealSearchFavoriteBinding
-import com.pedrollaraf.mealapp.domain.models.MealSearch
+import com.pedrollaraf.mealapp.domain.models.Meal
 import com.pedrollaraf.mealapp.presentation.eventclick.EventClickItemMealHomeSearchList
 
-class HomeSearchListAdapter(private var homeSearchList: List<MealSearch>) :
+class HomeSearchListAdapter(private var homeSearchList: List<Meal>) :
     RecyclerView.Adapter<HomeSearchListAdapter.HomeSearchViewHolder>() {
 
     var eventClickItemMealHomeSearchList: EventClickItemMealHomeSearchList? = null
@@ -34,7 +34,7 @@ class HomeSearchListAdapter(private var homeSearchList: List<MealSearch>) :
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateList(newList: List<MealSearch>) {
+    fun updateList(newList: List<Meal>) {
         homeSearchList = newList
         this.notifyDataSetChanged()
     }
@@ -43,7 +43,7 @@ class HomeSearchListAdapter(private var homeSearchList: List<MealSearch>) :
         RecyclerView.ViewHolder(viewBinding.root) {
 
         fun bindView(
-            item: MealSearch,
+            item: Meal,
             eventClickItemMealHomeSearchList: EventClickItemMealHomeSearchList?
         ) {
             viewBinding.titleItemMealSearch.text = item.strMeal

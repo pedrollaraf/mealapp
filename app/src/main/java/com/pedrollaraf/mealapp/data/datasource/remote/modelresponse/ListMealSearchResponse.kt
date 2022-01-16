@@ -5,5 +5,5 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ListMealSearchResponse(
-    val meals: List<MealSearchResponse>
+    val meals: List<MealResponse>
 ): Parcelable

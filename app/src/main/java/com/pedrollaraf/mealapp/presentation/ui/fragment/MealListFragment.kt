@@ -84,7 +84,7 @@ class MealListFragment : Fragment(), ObservableEvents {
                     findNavController().navigate(
                         MealListFragmentDirections.actionListMealFragmentToMealDetailsFragment(
                             mealName = itemName,
-                            mealSearch = null
+                            meal = null
                         )
                     )
                 }

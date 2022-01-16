@@ -1,7 +1,7 @@
 package com.pedrollaraf.mealapp.presentation.eventclick
 
-import com.pedrollaraf.mealapp.domain.models.MealSearch
+import com.pedrollaraf.mealapp.domain.models.Meal
 
 interface EventClickItemMealHomeSearchList {
-    fun onClickItemMealHomeSearchList(item:MealSearch)
+    fun onClickItemMealHomeSearchList(item:Meal)
 }

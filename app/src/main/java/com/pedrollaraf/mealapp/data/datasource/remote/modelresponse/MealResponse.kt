@@ -1,10 +1,10 @@
-package com.pedrollaraf.mealapp.domain.models
+package com.pedrollaraf.mealapp.data.datasource.remote.modelresponse
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class MealSearch(
+data class MealResponse(
     val idMeal : String? = null,
     val strMeal: String? = null,
     val strDrinkAlternate: String? = null,

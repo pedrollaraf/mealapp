@@ -53,8 +53,8 @@
             android:defaultValue="@null"/>
 
         <argument
-            android:name="mealSearch"
-            app:argType="com.pedrollaraf.mealapp.domain.models.MealSearch"
+            android:name="meal"
+            app:argType="com.pedrollaraf.mealapp.domain.models.Meal"
             app:nullable="true"
             android:defaultValue="@null"/>
 

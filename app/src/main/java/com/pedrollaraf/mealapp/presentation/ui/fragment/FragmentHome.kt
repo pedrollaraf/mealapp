@@ -6,7 +6,6 @@ import android.text.TextWatcher
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnFocusChangeListener
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -14,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.pedrollaraf.mealapp.common.utils.ObservableEvents
 import com.pedrollaraf.mealapp.databinding.FragmentHomeBinding
-import com.pedrollaraf.mealapp.domain.models.MealSearch
+import com.pedrollaraf.mealapp.domain.models.Meal
 import com.pedrollaraf.mealapp.presentation.eventclick.EventClickItemMealHomeSearchList
 import com.pedrollaraf.mealapp.presentation.ui.activity.MainActivity
 import com.pedrollaraf.mealapp.presentation.ui.adapters.HomeSearchListAdapter
@@ -120,11 +119,11 @@ class FragmentHome : Fragment(), ObservableEvents, View.OnClickListener {
 
         homeSearchListAdapter.eventClickItemMealHomeSearchList =
             object : EventClickItemMealHomeSearchList {
-                override fun onClickItemMealHomeSearchList(item: MealSearch) {
+                override fun onClickItemMealHomeSearchList(item: Meal) {
                     findNavController().navigate(
                         FragmentHomeDirections.actionFragmentHomeToMealDetailsFragment(
                             mealName = null,
-                            mealSearch = item
+                            meal = item
                         )
                     )
                 }
@@ -143,7 +142,7 @@ class FragmentHome : Fragment(), ObservableEvents, View.OnClickListener {
         viewBinding.recyclerViewMealListHome.adapter = homeSearchListAdapter
     }
 
-    private fun handleList(list: List<MealSearch>) {
+    private fun handleList(list: List<Meal>) {
         (activity as MainActivity).showHideProgressBar(false)
         when {
             list.isNotEmpty() -> {

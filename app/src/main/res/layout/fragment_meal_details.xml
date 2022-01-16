@@ -64,6 +64,17 @@
 
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/meal_favorite_button"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/ic_favorite_disabled"
+                    android:layout_marginEnd="13dp"
+                    android:padding="2dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/meal_category_image"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
