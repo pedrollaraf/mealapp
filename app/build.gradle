@@ -15,6 +15,7 @@ android {
         targetSdk 31
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -59,6 +60,8 @@ dependencies {
 
     def version_view_model = "2.4.0"
 
+    def version_room = "2.4.1"
+
     //region Android
     implementation "androidx.core:core-ktx:$version_core_ktx"
     implementation "androidx.appcompat:appcompat:$version_app_compat"
@@ -99,5 +102,12 @@ dependencies {
 
     //region Coil
     implementation "io.coil-kt:coil:$version_coil"
+    //endregion
+
+    //region Room RoomLocalDataBase
+    implementation "androidx.room:room-ktx:$version_room"
+    implementation "androidx.room:room-runtime:$version_room"
+    kapt "androidx.room:room-compiler:$version_room"
+    testImplementation "androidx.room:room-testing:$version_room"
     //endregion
 }

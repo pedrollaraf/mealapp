@@ -27,7 +27,9 @@ class DIMealManager {
                 loadModules(DIDataModule().getRepositoriesModules())
                 loadModules(DIDataModule().getDataSourceModules())
                 loadModules(DIDataModule().getServicesModules())
+                loadModules(DIDataModule().getLocalDataBaseModule())
                 loadModules(DIDomainModules().getDomainModules())
+                loadModules(DIDelegationModule().getDelegationModules())
                 loadModules(DIViewModelModules().getViewModelModules())
             }
         }

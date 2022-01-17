@@ -6,6 +6,9 @@ import org.koin.dsl.module
 
 fun getMealDetailsViewModelModules() = module {
     viewModel {
-        MealDetailsViewModel(get())
+        MealDetailsViewModel(
+            mealSearchUseCase = get(),
+            mealFavoriteDelegationInterface = get()
+        )
     }
 }

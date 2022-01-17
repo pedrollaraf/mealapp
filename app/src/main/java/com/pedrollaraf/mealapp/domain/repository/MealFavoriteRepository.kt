@@ -1,7 +1,7 @@
-package com.pedrollaraf.mealapp.presentation.ui.delegation
+package com.pedrollaraf.mealapp.domain.repository
 
 import com.pedrollaraf.mealapp.domain.models.Meal
 
-interface MealFavoriteDelegationManager {
+interface MealFavoriteRepository {
     suspend fun addMealOnFavoriteList(meal: Meal)
 }

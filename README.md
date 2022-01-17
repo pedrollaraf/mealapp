@@ -1,5 +1,5 @@
 # MealApp
-Food app shows category list food and each meal from that category. You can Search meal and favorite meal.
+Food app shows category list food and each mealEntity from that category. You can Search mealEntity and favorite mealEntity.
 Clean Architecture, MVVM , Local Database using Kotlin.
 
 __#How it's going to work__</br>

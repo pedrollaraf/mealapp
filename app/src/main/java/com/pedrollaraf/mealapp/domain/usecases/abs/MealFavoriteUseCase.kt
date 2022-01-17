@@ -1,7 +1,7 @@
-package com.pedrollaraf.mealapp.presentation.ui.delegation
+package com.pedrollaraf.mealapp.domain.usecases.abs
 
 import com.pedrollaraf.mealapp.domain.models.Meal
 
-interface MealFavoriteDelegationManager {
+interface MealFavoriteUseCase {
     suspend fun addMealOnFavoriteList(meal: Meal)
 }

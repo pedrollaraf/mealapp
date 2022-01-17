@@ -75,9 +75,10 @@ class MealDetailsViewModel(
         return measures.trim()
     }
 
-
-    fun favoriteMeal(meal: Meal) {
-        val teste = meal
+   fun favoriteMeal(meal: Meal) {
+        viewModelScope.launch {
+            mealFavoriteDelegationInterface.addMealOnFavoriteList(meal)
+        }
     }
 
 }
