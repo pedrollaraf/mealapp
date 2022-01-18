@@ -14,7 +14,7 @@
         android:visibility="gone"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,8 +25,7 @@
             android:id="@+id/no_data_image"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            app:srcCompat="@drawable/ic_no_connection"
-            android:layout_marginStart="13dp"
+            app:srcCompat="@drawable/ic_sad"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="@+id/title_no_data"
             app:layout_constraintStart_toStartOf="@+id/title_no_data"
@@ -34,9 +33,9 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title_no_data"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/no_connection"
+            android:text="@string/no_results"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"

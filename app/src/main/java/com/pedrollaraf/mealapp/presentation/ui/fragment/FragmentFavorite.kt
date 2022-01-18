@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.pedrollaraf.mealapp.R
 import com.pedrollaraf.mealapp.common.utils.ListenerEvents
 import com.pedrollaraf.mealapp.common.utils.ObservableEvents
 import com.pedrollaraf.mealapp.databinding.FragmentFavoriteBinding
@@ -46,7 +47,7 @@ class FragmentFavorite : Fragment(), ObservableEvents, ListenerEvents, View.OnCl
 
     override fun initObservables() {
         viewModel.mealFavoriteLiveData.observe(viewLifecycleOwner, Observer {
-            (activity as MainActivity).showHideProgressBar(false)
+            //(activity as MainActivity).showHideProgressBar(false)
             when {
                 it.isNotEmpty() -> {
                     viewBinding.recyclerViewMealFavorite.visibility = View.VISIBLE
@@ -57,6 +58,8 @@ class FragmentFavorite : Fragment(), ObservableEvents, ListenerEvents, View.OnCl
                 else -> {
                     viewBinding.noDataImage.visibility = View.VISIBLE
                     viewBinding.titleNoData.visibility = View.VISIBLE
+                    viewBinding.noDataImage.setImageResource(R.drawable.ic_sad)
+                    viewBinding.titleNoData.setText(R.string.no_results)
                     viewBinding.recyclerViewMealFavorite.visibility = View.GONE
                 }
             }
@@ -82,7 +85,7 @@ class FragmentFavorite : Fragment(), ObservableEvents, ListenerEvents, View.OnCl
     private fun initView() {
         viewBinding.noDataImage.visibility = View.GONE
         viewBinding.titleNoData.visibility = View.GONE
-        (activity as MainActivity).showHideProgressBar(true)
+        //(activity as MainActivity).showHideProgressBar(true)
         setupAdapter()
         viewModel.getListFavorite()
     }

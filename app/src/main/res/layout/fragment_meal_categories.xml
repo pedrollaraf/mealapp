@@ -26,7 +26,6 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             app:srcCompat="@drawable/ic_no_connection"
-            android:layout_marginStart="13dp"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="@+id/title_no_data"
             app:layout_constraintStart_toStartOf="@+id/title_no_data"
