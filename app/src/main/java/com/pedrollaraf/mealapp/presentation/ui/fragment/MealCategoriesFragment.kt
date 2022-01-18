@@ -56,9 +56,11 @@ class MealCategoriesFragment : Fragment(), ObservableEvents {
                 it.isNotEmpty() -> {
                     viewBinding.recyclerViewMealCategories.visibility = View.VISIBLE
                     viewBinding.titleNoData.visibility = View.GONE
+                    viewBinding.noDataImage.visibility = View.GONE
                     mealCategoriesAdapter.updateList(it)
                 }
                 else -> {
+                    viewBinding.noDataImage.visibility = View.VISIBLE
                     viewBinding.titleNoData.visibility = View.VISIBLE
                     viewBinding.recyclerViewMealCategories.visibility = View.GONE
                 }
@@ -79,6 +81,7 @@ class MealCategoriesFragment : Fragment(), ObservableEvents {
     }
 
     private fun initView() {
+        viewBinding.noDataImage.visibility = View.GONE
         viewBinding.titleNoData.visibility = View.GONE
         (activity as MainActivity).showHideProgressBar(true)
         setupAdapter()

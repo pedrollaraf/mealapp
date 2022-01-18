@@ -131,6 +131,7 @@ class FragmentHome : Fragment(), ObservableEvents, View.OnClickListener {
     }
 
     private fun initView() {
+        viewBinding.noDataImage.visibility = View.GONE
         viewBinding.titleNoData.visibility = View.GONE
         (activity as MainActivity).showHideProgressBar(true)
         setupAdapter()
@@ -148,9 +149,11 @@ class FragmentHome : Fragment(), ObservableEvents, View.OnClickListener {
             list.isNotEmpty() -> {
                 viewBinding.recyclerViewMealListHome.visibility = View.VISIBLE
                 viewBinding.titleNoData.visibility = View.GONE
+                viewBinding.noDataImage.visibility = View.GONE
                 homeSearchListAdapter.updateList(list)
             }
             else -> {
+                viewBinding.noDataImage.visibility = View.VISIBLE
                 viewBinding.titleNoData.visibility = View.VISIBLE
                 viewBinding.recyclerViewMealListHome.visibility = View.GONE
             }

@@ -11,12 +11,13 @@ import kotlinx.coroutines.launch
 
 class MealDetailsViewModel(
     private val mealSearchUseCase: MealSearchUseCase,
-    private val mealFavoriteDelegationInterface : MealFavoriteDelegationManager
-) : ViewModel(),MealFavoriteDelegationManager by mealFavoriteDelegationInterface {
+    private val mealFavoriteDelegationInterface: MealFavoriteDelegationManager
+) : ViewModel(), MealFavoriteDelegationManager by mealFavoriteDelegationInterface {
+
+    //region Seach Meal
 
     private val mealSearchMutableLiveData = MutableLiveData<Meal>()
-    val mealSearchLiveData: LiveData<Meal>
-        get() = mealSearchMutableLiveData
+    val mealSearchLiveData: LiveData<Meal> get() = mealSearchMutableLiveData
 
     fun getMealDetails(query: String) {
         viewModelScope.launch {
@@ -75,10 +76,44 @@ class MealDetailsViewModel(
         return measures.trim()
     }
 
-   fun favoriteMeal(meal: Meal) {
+    //endregion
+
+    //region Favorite Meal
+
+    private val isMealFavoriteMutableLiveData = MutableLiveData<String>()
+    val isMealFavoriteLiveData: LiveData<String> get() = isMealFavoriteMutableLiveData
+
+    fun favoriteMeal(meal: Meal) {
         viewModelScope.launch {
-            mealFavoriteDelegationInterface.addMealOnFavoriteList(meal)
+            val isFavorite = mealFavoriteDelegationInterface.addMealOnFavoriteList(meal)
+            isMealFavoriteMutableLiveData.postValue(isFavorite)
         }
     }
 
+    fun unFavoriteMeal(meal: Meal) {
+        viewModelScope.launch {
+            val isUnFavorite = mealFavoriteDelegationInterface.removeMealOnFavoriteList(meal)
+            isMealFavoriteMutableLiveData.postValue(isUnFavorite)
+        }
+    }
+
+    private val mealFavoriteMutableLiveData = MutableLiveData<List<Meal>>()
+    val mealFavoriteLiveData: LiveData<List<Meal>> get() = mealFavoriteMutableLiveData
+
+    fun getListFavorite(){
+        viewModelScope.launch {
+            val listFavorite = mealFavoriteDelegationInterface.getListMealFavorite()
+            mealFavoriteMutableLiveData.postValue(listFavorite)
+        }
+    }
+
+    fun getMealFromFavoriteList(mealName : String, mealList : List<Meal>): Meal? {
+        var itemMeal : Meal? = null
+        for(meal in mealList){
+            if(mealName == meal.strMeal){
+                itemMeal = meal
+            }
+        }
+        return itemMeal
+    }
 }

@@ -59,6 +59,7 @@ class MealListFragment : Fragment(), ObservableEvents {
                 viewModelMealListFromCountry.getListMealsFromCountry(countryName)
             }
             else -> {
+                viewBinding.noDataImage.visibility = View.VISIBLE
                 viewBinding.titleNoData.visibility = View.VISIBLE
                 viewBinding.recyclerViewMealList.visibility = View.VISIBLE
             }
@@ -92,6 +93,7 @@ class MealListFragment : Fragment(), ObservableEvents {
     }
 
     private fun initView() {
+        viewBinding.noDataImage.visibility = View.GONE
         viewBinding.titleNoData.visibility = View.GONE
         (activity as MainActivity).showHideProgressBar(true)
         setupAdapter()
@@ -108,10 +110,12 @@ class MealListFragment : Fragment(), ObservableEvents {
         when {
             list.isNotEmpty() -> {
                 viewBinding.recyclerViewMealList.visibility = View.VISIBLE
+                viewBinding.noDataImage.visibility = View.GONE
                 viewBinding.titleNoData.visibility = View.GONE
                 mealListAdapter.updateList(list)
             }
             else -> {
+                viewBinding.noDataImage.visibility = View.VISIBLE
                 viewBinding.titleNoData.visibility = View.VISIBLE
                 viewBinding.recyclerViewMealList.visibility = View.GONE
             }

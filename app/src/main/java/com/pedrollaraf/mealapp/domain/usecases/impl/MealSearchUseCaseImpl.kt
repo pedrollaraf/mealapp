@@ -7,7 +7,12 @@ import com.pedrollaraf.mealapp.domain.usecases.abs.MealSearchUseCase
 class MealSearchUseCaseImpl(
     private val mealSearchRepository : MealSearchListRepository
 ) : MealSearchUseCase {
-    override suspend fun invoke(query: String): Meal {
-        return mealSearchRepository.getSearchMeals(query).first()
+    override suspend fun invoke(query: String): Meal? {
+        val resultList = mealSearchRepository.getSearchMeals(query)
+        return if(resultList.isNullOrEmpty()){
+            null
+        }else{
+            resultList.first()
+        }
     }
 }

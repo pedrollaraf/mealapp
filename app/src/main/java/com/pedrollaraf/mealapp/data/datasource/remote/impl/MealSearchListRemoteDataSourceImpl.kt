@@ -1,5 +1,6 @@
 package com.pedrollaraf.mealapp.data.datasource.remote.impl
 
+import android.util.Log
 import com.pedrollaraf.mealapp.data.datasource.remote.abs.MealSearchListRemoteDataSource
 import com.pedrollaraf.mealapp.data.datasource.remote.modelresponse.MealResponse
 import com.pedrollaraf.mealapp.data.service.abs.MealSearchListApi

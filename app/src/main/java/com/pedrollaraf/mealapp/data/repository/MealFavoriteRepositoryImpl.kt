@@ -9,7 +9,19 @@ import com.pedrollaraf.mealapp.domain.repository.MealFavoriteRepository
 class MealFavoriteRepositoryImpl(
     private val mealFavoriteLocalDataSource: MealFavoriteLocalDataSource
 ) : MealFavoriteRepository {
-    override suspend fun addMealOnFavoriteList(meal: Meal) {
-        mealFavoriteLocalDataSource.addMealOnFavoriteList(meal.toMealFavoriteEntityDomainModel())
+    override suspend fun addMealOnFavoriteList(meal: Meal): String {
+        return mealFavoriteLocalDataSource.addMealOnFavoriteList(
+            meal.toMealFavoriteEntityDomainModel()
+        )
+    }
+
+    override suspend fun removeMealOnFavoriteList(meal: Meal): String {
+        return mealFavoriteLocalDataSource.removeMealOnFavoriteList(
+            meal.toMealFavoriteEntityDomainModel()
+        )
+    }
+
+    override suspend fun getListMealFavorite(): List<Meal> {
+        return mealFavoriteLocalDataSource.getListMealFavorite().toListMealFavoriteDomainModel()
     }
 }

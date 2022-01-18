@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.pedrollaraf.mealapp.R
@@ -53,10 +54,14 @@ class MealListAdapter(private var mealFromCategoryOrCountryList: List<MealFromCa
                     onSuccess = { _, _ ->
                         viewBinding.progressBarImage.visibility = View.GONE
                         viewBinding.imageItemMealList.visibility = View.VISIBLE
+                        viewBinding.imageItemMealList.scaleType =
+                            ImageView.ScaleType.CENTER_CROP
                     },
                     onError = { _, _ ->
                         viewBinding.progressBarImage.visibility = View.GONE
                         viewBinding.imageItemMealList.visibility = View.VISIBLE
+                        viewBinding.imageItemMealList.scaleType =
+                            ImageView.ScaleType.FIT_CENTER
                         viewBinding.imageItemMealList.setImageResource(R.drawable.ic_error)
                     }
                 )

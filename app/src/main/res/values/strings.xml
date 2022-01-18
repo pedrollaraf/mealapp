@@ -10,4 +10,6 @@
     <string name="measures_list">Measures List</string>
     <string name="how_to_prepare">How to prepare ?</string>
     <string name="search">Search...</string>
+    <string name="oh_no">Oh no!!</string>
+    <string name="no_connection">Looks like you lost the internet connection!! Please, check it later</string>
 </resources>

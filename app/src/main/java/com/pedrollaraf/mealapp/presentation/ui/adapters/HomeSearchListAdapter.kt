@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.pedrollaraf.mealapp.R
@@ -56,10 +57,12 @@ class HomeSearchListAdapter(private var homeSearchList: List<Meal>) :
                     onSuccess = { _, _ ->
                         viewBinding.progressBarImage.visibility = View.GONE
                         viewBinding.imageItemMealSearch.visibility = View.VISIBLE
+                        viewBinding.imageItemMealSearch.scaleType = ImageView.ScaleType.CENTER_CROP
                     },
                     onError = { _, _ ->
                         viewBinding.progressBarImage.visibility = View.GONE
                         viewBinding.imageItemMealSearch.visibility = View.VISIBLE
+                        viewBinding.imageItemMealSearch.scaleType = ImageView.ScaleType.FIT_CENTER
                         viewBinding.imageItemMealSearch.setImageResource(R.drawable.ic_error)
                     }
                 )
