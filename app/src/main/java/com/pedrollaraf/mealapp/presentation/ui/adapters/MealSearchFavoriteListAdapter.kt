@@ -10,12 +10,12 @@ import coil.load
 import com.pedrollaraf.mealapp.R
 import com.pedrollaraf.mealapp.databinding.ItemMealSearchFavoriteBinding
 import com.pedrollaraf.mealapp.domain.models.Meal
-import com.pedrollaraf.mealapp.presentation.eventclick.EventClickItemMealHomeSearchList
+import com.pedrollaraf.mealapp.presentation.eventclick.EventClickItemMealSearchOrFavoriteList
 
-class HomeSearchListAdapter(private var homeSearchList: List<Meal>) :
-    RecyclerView.Adapter<HomeSearchListAdapter.HomeSearchViewHolder>() {
+class MealSearchFavoriteListAdapter(private var searchFavoriteList: List<Meal>) :
+    RecyclerView.Adapter<MealSearchFavoriteListAdapter.HomeSearchViewHolder>() {
 
-    var eventClickItemMealHomeSearchList: EventClickItemMealHomeSearchList? = null
+    var eventClickItemMealSearchOrFavoriteList: EventClickItemMealSearchOrFavoriteList? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeSearchViewHolder {
         val viewBinding = ItemMealSearchFavoriteBinding.inflate(
@@ -26,17 +26,17 @@ class HomeSearchListAdapter(private var homeSearchList: List<Meal>) :
     }
 
     override fun onBindViewHolder(holder: HomeSearchViewHolder, position: Int) {
-        val item = homeSearchList[position]
-        holder.bindView(item, eventClickItemMealHomeSearchList)
+        val item = searchFavoriteList[position]
+        holder.bindView(item, eventClickItemMealSearchOrFavoriteList)
     }
 
     override fun getItemCount(): Int {
-        return homeSearchList.size
+        return searchFavoriteList.size
     }
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateList(newList: List<Meal>) {
-        homeSearchList = newList
+        searchFavoriteList = newList
         this.notifyDataSetChanged()
     }
 
@@ -45,7 +45,7 @@ class HomeSearchListAdapter(private var homeSearchList: List<Meal>) :
 
         fun bindView(
             item: Meal,
-            eventClickItemMealHomeSearchList: EventClickItemMealHomeSearchList?
+            eventClickItemMealSearchOrFavoriteList: EventClickItemMealSearchOrFavoriteList?
         ) {
             viewBinding.titleItemMealSearch.text = item.strMeal
             "Category: ${item.strCategory}".also { viewBinding.titleItemMealCategory.text = it }
@@ -69,7 +69,7 @@ class HomeSearchListAdapter(private var homeSearchList: List<Meal>) :
             }
 
             viewBinding.mealCategoryButton.setOnClickListener {
-                eventClickItemMealHomeSearchList?.onClickItemMealHomeSearchList(item)
+                eventClickItemMealSearchOrFavoriteList?.onClickItemMealSearchFavoriteList(item)
             }
         }
     }

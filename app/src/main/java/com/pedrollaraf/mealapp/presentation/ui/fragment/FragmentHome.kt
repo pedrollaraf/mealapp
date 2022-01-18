@@ -14,21 +14,22 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.pedrollaraf.mealapp.common.utils.ObservableEvents
 import com.pedrollaraf.mealapp.databinding.FragmentHomeBinding
 import com.pedrollaraf.mealapp.domain.models.Meal
-import com.pedrollaraf.mealapp.presentation.eventclick.EventClickItemMealHomeSearchList
+import com.pedrollaraf.mealapp.presentation.eventclick.EventClickItemMealSearchOrFavoriteList
 import com.pedrollaraf.mealapp.presentation.ui.activity.MainActivity
-import com.pedrollaraf.mealapp.presentation.ui.adapters.HomeSearchListAdapter
+import com.pedrollaraf.mealapp.presentation.ui.adapters.MealSearchFavoriteListAdapter
 import com.pedrollaraf.mealapp.presentation.viewmodels.MealSearchViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 import com.pedrollaraf.mealapp.R
 import com.pedrollaraf.mealapp.common.utils.Keyboard
+import com.pedrollaraf.mealapp.common.utils.ListenerEvents
 
-class FragmentHome : Fragment(), ObservableEvents, View.OnClickListener {
+class FragmentHome : Fragment(), ObservableEvents, ListenerEvents, View.OnClickListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val viewBinding get() = _binding!!
 
-    private var homeSearchListAdapter = HomeSearchListAdapter(homeSearchList = listOf())
+    private var homeSearchListAdapter = MealSearchFavoriteListAdapter(searchFavoriteList = listOf())
     private val viewModel: MealSearchViewModel by viewModel()
 
     override fun onCreateView(
@@ -72,8 +73,7 @@ class FragmentHome : Fragment(), ObservableEvents, View.OnClickListener {
         }
     }
 
-    private fun initListeners() {
-
+    override fun initListeners() {
         viewBinding.homeSearchView.searchButton.setOnClickListener(this)
         viewBinding.homeSearchView.closeSearchButton.setOnClickListener(this)
 
@@ -106,7 +106,6 @@ class FragmentHome : Fragment(), ObservableEvents, View.OnClickListener {
 
             override fun afterTextChanged(s: Editable?) {}
         })
-
     }
 
     override fun initObservables() {
@@ -117,9 +116,9 @@ class FragmentHome : Fragment(), ObservableEvents, View.OnClickListener {
             })
 
 
-        homeSearchListAdapter.eventClickItemMealHomeSearchList =
-            object : EventClickItemMealHomeSearchList {
-                override fun onClickItemMealHomeSearchList(item: Meal) {
+        homeSearchListAdapter.eventClickItemMealSearchOrFavoriteList =
+            object : EventClickItemMealSearchOrFavoriteList {
+                override fun onClickItemMealSearchFavoriteList(item: Meal) {
                     findNavController().navigate(
                         FragmentHomeDirections.actionFragmentHomeToMealDetailsFragment(
                             mealName = null,

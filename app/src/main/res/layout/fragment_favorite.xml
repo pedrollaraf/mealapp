@@ -7,7 +7,7 @@
     android:background="@color/black90">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_meal_categories"
+        android:id="@+id/recycler_view_meal_favorite"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/item_meal_search_favorite"

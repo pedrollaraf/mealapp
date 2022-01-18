@@ -43,6 +43,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
                     auxFg
                 )
                 if (!checker) {
+                    viewBinding.toolbar.toolbarMealFavoriteButton.setImageResource(
+                        R.drawable.ic_favorite_disabled
+                    )
                     auxFg = MainActivityKeys.MealCountriesFragment.toString()
                     replaceFragment(R.id.mealCountriesFragment)//ID navigation
                 }
@@ -53,6 +56,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
                     auxFg
                 )
                 if (!checker) {
+                    viewBinding.toolbar.toolbarMealFavoriteButton.setImageResource(
+                        R.drawable.ic_favorite_disabled
+                    )
                     auxFg = MainActivityKeys.MealCategoriesFragment.toString()
                     replaceFragment(R.id.mealCategoriesFragment)//ID navigation
                 }
@@ -63,6 +69,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
                     auxFg
                 )
                 if (!checker) {
+                    viewBinding.toolbar.toolbarMealFavoriteButton.setImageResource(
+                        R.drawable.ic_favorite_enabled
+                    )
                     auxFg = MainActivityKeys.FavoriteFragment.toString()
                     replaceFragment(R.id.fragmentFavorite)//ID navigation
                 }
@@ -73,6 +82,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, ListenerEvents {
                     auxFg
                 )
                 if (!checker) {
+                    viewBinding.toolbar.toolbarMealFavoriteButton.setImageResource(
+                        R.drawable.ic_favorite_disabled
+                    )
                     auxFg = MainActivityKeys.HomeFragment.toString()
                     replaceFragment(R.id.fragmentHome)//ID navigation
                 }
